@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
 /* Variaveis de cores */
 
 html,
@@ -8,7 +13,7 @@ html,
 }
 
 :root {
-  --vermelho:#a00016;
+  --vermelho: #ff7a18;
   --preto: #171717;
   --cinzaEscuro: #373436;
   --cinza: #787878;
@@ -20,7 +25,15 @@ html,
 h1,
 h2,
 h3 {
-  color: var(--preto);
+  color: white;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
 }
 
 p {
@@ -31,19 +44,20 @@ p {
 /* Imagens */
 
 /* Header */
+body {
+  background: linear-gradient(130deg, #ff7a18, #af002d 41.07%, #319197 76.05%);
+}
 
-#site-header {
-  /* background: radial-gradient(
-    circle,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(38, 70, 83, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  ); */
+#site-header,
+#site-footer,
+aside p {
   text-align: center;
+  font-family: "Permanent Marker", cursive;
+  text-shadow: 0 4px 4px rgb(0 0 0 / 50%);
 }
 
 #msg-header {
-  margin: 10px auto;
+  margin: 0 auto;
 }
 #msg-header > * {
   display: inline-block;
@@ -86,13 +100,9 @@ p {
   height: 100px;
   display: inline-block;
   margin: 0 10px;
-  /* vertical-align: middle; */
 }
 
 #site-header li:hover {
-  background: #fff;
-  /* background: var(--cinzaClaro); */
-  border: 1px solid var(--vermelho);
   border-radius: 20px;
 }
 
@@ -115,32 +125,138 @@ p {
 
 /* Content */
 
-.missao {
-  color: var(--vermelho);
-  font-size: 3em;
-  text-align: center;
-  margin: 10px auto 50px auto;
-
-}
-
 main {
-  padding: 50px 100px;
-
-  /* background: rgb(51, 51, 51);
-  background: linear-gradient(
-    180deg,
-    rgba(51, 51, 51, 1) 0%,
-    rgba(0, 0, 0, 1) 100%
-  ); */
-  /* border-radius: 20px; */
-background: rgb(30,30,30);
-background: linear-gradient(180deg, rgba(30,30,30,1) 0%, rgba(0,0,0,1) 100%);
+  margin: 0 auto;
+  padding: 50px 10vw;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  font-family: "Asap", sans-serif;
+  text-align: center;
+  color: #373436;
 }
 
-iframe {
+.main-container {
+  display: inline-block;
+  width: 60%;
+  max-width: 600px;
+  height: 600px;
+  filter: blue(2px);
+  background: #333;
+  box-shadow: 15px 15px 5px rgba(0, 0, 0, 2);
+  margin-right: 5vw;
+  vertical-align: top;
+  position: relative;
+}
+
+.main-container h2 {
+  font-size: 3em;
+  margin: 10px;
+}
+
+@keyframes oloko-bixo {
+  0%   {transform: rotate(0deg); font-size: 2em }
+  10%  {transform: rotate(35deg); font-size: 3em }
+  20%  {transform: rotate(70deg); font-size: 2em }
+  30%  {transform: rotate(105deg); font-size: 3em }
+  40%  {transform: rotate(140deg); font-size: 2em }
+  50%  {transform: rotate(175deg); font-size: 3em }
+  60%  {transform: rotate(210deg); font-size: 2em }
+  70%  {transform: rotate(240deg); font-size: 3em }
+  80%  {transform: rotate(270deg); font-size: 3em }
+  90%  {transform: rotate(300deg); font-size: 3em }
+  100% {transform: rotate(335deg); font-size: 2em }
+
+}
+
+.main-container p {
+  font-size: 3em;
+  color: var(--vermelho);
+  transform: rotate(-20deg);
+  margin-top: 40px;
+  margin-left: 50px;
+  animation-name: oloko-bixo;
+  animation-duration: 5s;
+  z-index: 2;
+}
+
+.main-container img {
   width: 100%;
-  overflow: visible;
-  height: 1200px;
-  border-radius: 50px;
-  border: 2px solid var(--cinzaClaro);
+  height: 90%;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  z-index: 1;
+}
+
+aside {
+  display: inline-block;
+  width: 30%;
+  max-width: 300px;
+  height: 600px;
+  background: #333;
+  box-shadow: 8px 8px 5px rgba(0, 0, 0, 2);
+}
+
+.redes-sociais p {
+  color: white;
+  margin: 20px auto;
+  font-size: 2.5em;
+}
+
+.redes-sociais a {
+  display: block;
+  margin: 30px;
+}
+
+@keyframes crescer {
+  0% {width: 80px; height: 80px}
+  50%{width: 90px; height: 90px}
+  100%{width: 100px; height: 100px}
+}
+
+.redes-sociais img:hover {
+  animation-name: crescer;
+  animation-duration: 2s;
+}
+
+#site-footer {
+  height: 200px;
+}
+
+#site-footer p {
+  font-size: 2em;
+}
+
+#site-footer div {
+  display: inline-block;
+}
+
+.contato ul {
+  list-style: none;
+}
+
+#contato-titulo {
+  font-size: 3.5em;
+}
+
+.contato li {
+  font-family: 'Hachi Maru Pop', cursive;
+  /* transform: rotate(20deg); */
+  font-size: 2em;
+  float: left;
+  margin: 20px 10px;
+}
+
+.contato li:hover {
+  animation-name: treme-treme;
+  animation-duration: 3s;
+}
+
+@keyframes treme-treme {
+  0% {font-size: 2em}
+  100% {font-size: 3em}
+}
+.copyright {
+  font-size: 3em;
 }
