@@ -1,0 +1,146 @@
+/* Variaveis de cores */
+
+html,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --vermelho:#a00016;
+  --preto: #171717;
+  --cinzaEscuro: #373436;
+  --cinza: #787878;
+  --cinzaClaro: #c0c0c0;
+}
+
+/* Textos */
+
+h1,
+h2,
+h3 {
+  color: var(--preto);
+}
+
+p {
+  font-family: arial, sans-serif;
+  color: var(--preto);
+}
+
+/* Imagens */
+
+/* Header */
+
+#site-header {
+  /* background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(38, 70, 83, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  ); */
+  text-align: center;
+}
+
+#msg-header {
+  margin: 10px auto;
+}
+#msg-header > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#site-header h1 {
+  vertical-align: top;
+  margin-top: 50px;
+}
+
+#logo {
+  margin: 0 auto;
+}
+
+#site-header h2 {
+  margin-top: 100px;
+}
+
+/* Navigation */
+
+#site-header nav {
+  width: 100%;
+}
+
+#site-header nav ul {
+  list-style: none;
+  /* background: #333; */
+  width: 100%;
+  background: rgb(51, 51, 51);
+  background: linear-gradient(
+    180deg,
+    rgba(51, 51, 51, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+#site-header li {
+  width: 180px;
+  height: 100px;
+  display: inline-block;
+  margin: 0 10px;
+  /* vertical-align: middle; */
+}
+
+#site-header li:hover {
+  background: #fff;
+  /* background: var(--cinzaClaro); */
+  border: 1px solid var(--vermelho);
+  border-radius: 20px;
+}
+
+#site-header a {
+  color: white;
+  text-decoration: none;
+  font-size: 2em;
+  height: 100px;
+  width: 100%;
+  display: block;
+  margin: 25px auto;
+}
+#site-header a:visited {
+  color: white;
+}
+
+#site-header a:hover {
+  color: var(--vermelho);
+}
+
+/* Content */
+
+.missao {
+  color: var(--vermelho);
+  font-size: 3em;
+  text-align: center;
+  margin: 10px auto 50px auto;
+
+}
+
+main {
+  padding: 50px 100px;
+
+  /* background: rgb(51, 51, 51);
+  background: linear-gradient(
+    180deg,
+    rgba(51, 51, 51, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  ); */
+  /* border-radius: 20px; */
+background: rgb(30,30,30);
+background: linear-gradient(180deg, rgba(30,30,30,1) 0%, rgba(0,0,0,1) 100%);
+}
+
+iframe {
+  width: 100%;
+  overflow: visible;
+  height: 1200px;
+  border-radius: 50px;
+  border: 2px solid var(--cinzaClaro);
+}

@@ -5,39 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Nome da Loja</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
-      <h1>Bem-vindo a <em>BOOM!</em></h1>
-      <img src="./images/logo.jpg" widht="200" height="200"/>
-      <h2>A loja que explode!!!</h2>
-    </div>
-
-    <div>
-      <a href="#">Página Inicial</a>
-      <a href="ctrl-estoque.html">Controle de Estoque</a>
-      <a href="add-produto.html">Adicionar Produto</a>
-      <a href="funcionarios.html">Funcionários</a>
-    </div>
-
-    <div>
-      <!-- ADICIONAR INFORMAÇOES SOBRE SUA LOJINHA -->
-    
-      <h2>Veja nossa explosao de preços!</h2>
-    </div>
-
-    <div>
-      <p>Siga-nos nas redes sociais!</p>
-
-      <div>
-<a>
-        <img src="https://image.flaticon.com/icons/png/512/25/25305.png" widht="80" height="80"/>
-</a>
-<a>
-        <img src="https://image.flaticon.com/icons/png/512/25/25425.png" widht="80" height="80"/>
-</a>
-        <img src="https://image.flaticon.com/icons/png/512/8/8800.png" widht="80" height="80"/>
+    <header id="site-header">
+      <div id="msg-header">
+        <h1>Bem-vindo a <em>BOOM!</em></h1>
+        <img id="logo" src="./images/logo.png" widht="200" height="200" />
+        <h2>A loja que <strong>explode!!!</strong></h2>
       </div>
-    </div>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="pag-inicial.html" target="conteudo">Início</a>
+          </li>
+          <li>
+            <a href="ctrl-estoque.html" target="conteudo">Estoque</a>
+          </li>
+          <li>
+            <a href="add-produto.html" target="conteudo">Produto</a>
+          </li>
+          <li>
+            <a href="funcionarios.html" target="conteudo">Funcionários</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <p class="missao">
+        Aproveite nossos precos explosivos, surreais, estilo bomba nuclear!!!
+      </p>
+
+      <iframe
+        src="pag-inicial.html"
+        name="conteudo"
+        title="Conteudo da pagina"
+      ></iframe>
+      <iframe
+        src="categorias.html"
+        name="categorias"
+        title="Categorias de produtos"
+      ></iframe>
+    </main>
+
+    <footer>
+      <div class="contato">
+        <h3>Contato</h3>
+        <nav>
+          <ul>
+            <li>email</li>
+            <li>telefone</li>
+            <li>whatsapp</li>
+            <li>telegram</li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="redes-sociais">
+        <p>Siga-nos nas redes sociais!</p>
+        <a>
+          <img
+            src="https://image.flaticon.com/icons/png/512/25/25305.png"
+            widht="80"
+            height="80"
+          />
+        </a>
+        <a>
+          <img
+            src="https://image.flaticon.com/icons/png/512/25/25425.png"
+            widht="80"
+            height="80"
+          />
+        </a>
+        <img
+          src="https://image.flaticon.com/icons/png/512/8/8800.png"
+          widht="80"
+          height="80"
+        />
+      </div>
+      <p class="copyright">2021@ All rights reserved. Boom Inc</p>
+    </footer>
   </body>
 </html>
