@@ -27,6 +27,7 @@ input[type=text] {
   border-width: 0 0 medium;
   border-style: solid;
 }
+
 button:focus {
   color: white;
 }
@@ -76,6 +77,15 @@ div img {
   height: 15px;
   background: none;
 }
+
+.icone:hover {
+  opacity: 0.5;
+
+}
+.icone:active {
+  opacity: 1;
+}
+
 
 /** 
   *
