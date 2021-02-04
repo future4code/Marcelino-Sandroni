@@ -72,6 +72,11 @@ div img {
     background-color: #2274a5;
     color: white;
 }
+#container-de-descricao > p {
+  display: inline-block;
+  margin-top: 200px;
+}
+
 
 #container-de-descricao>ol {
     padding: 15px 0px;
