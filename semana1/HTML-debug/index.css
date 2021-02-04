@@ -21,6 +21,11 @@ input {
   width: 500px;
 }
 
+input[type=text] {
+  border-width: 0 0 medium;
+  border-style: solid;
+}
+
 button:focus {
   color: white;
 }
