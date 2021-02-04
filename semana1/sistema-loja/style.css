@@ -38,7 +38,7 @@ h3 {
 p {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  color: var(--para);
+  color: var(--paragrafo);
 }
 
 /* Tamanho dos textinhos */
@@ -82,7 +82,9 @@ u {
 /* Links */
 
 .link-container {
-  max-width: calc(200px*4);
+  max-width: calc(200px * 5);
+  min-width: calc(200px * 4);
+  width: 50vw;
 }
 span.link-container,
 .link-container > li {
@@ -119,28 +121,56 @@ a:active {
 /* Estrutura principal de mi lojinha */
 body {
   background-color: var(--fundo1);
+  background: rgb(3, 1, 8);
+  background: linear-gradient(
+    to right,
+    rgba(3, 1, 8, 1) 0%,
+    rgba(58, 56, 88, 1) 100%
+  );
 }
 
 .site-container {
   width: 100%;
   min-height: 900px;
+  /* background: rgb(3, 1, 8);
+  background: linear-gradient(
+    90deg,
+    rgba(3, 1, 8, 1) 0%,
+    rgba(58, 56, 88, 1) 100%
+  ); */
+  background: linear-gradient(
+    to bottom,
+    rgba(3, 1, 8, 1) 0%,
+    rgba(58, 56, 88, 0.15) 100%
+  );
+  height: 100vh;
 }
 
 .site-header {
   width: 80%;
   min-width: 500px;
-  max-width: 1200px;
+  max-width: 1500px;
   height: 100px;
   margin: 0 auto;
 }
 
 .site-main {
+  width: 80%;
   margin: 50px auto;
-  border: 2px red solid;
   clear: both;
 }
 
 .site-footer {
+  margin: 0 auto;
+  display: block;
+  /* width: 80%; */
+  padding: 0 10%;
+  background: linear-gradient(
+    to top,
+    rgba(3, 1, 8, 1) 0%,
+    rgba(58, 56, 88, 0) 100%
+  );
+  height: 300px;
 }
 
 /* header - o cabecao da minha lojinha */
@@ -148,16 +178,36 @@ body {
 
 .header-msg {
   float: left;
+  padding-left: 40px;
 }
 
 .header-msg h1 {
-  font-size: 28px;
   padding-top: 70px;
 }
 
-.header-msg img {
+@keyframes treme-treme {
+  0% {
+    transform: rotate(0deg);
+    margin-left: 0;
+  }
+  33% {
+    transform: rotate(5deg);
+    margin-left: 10px;
+  }
+  66% {
+    transform: rotate(-5deg);
+    margin-left: -10px;
+  }
+  100% {
+    transform: rotate(0deg);
+    margin-left: 0;
+  }
+}
+
+.header-logo {
   width: 300px;
-  height: 120px;
+  height: 300px;
+  animation: treme-treme 1s infinite linear;
 }
 
 /* menu da lajinha em cima */
@@ -184,20 +234,179 @@ body {
 /* main - o miolo da minha lojinha */
 
 .site-main {
-}
-.site-main. section {
-}
-.site-main h2 {
-}
-.site-main p {
+  width: 80%;
+  position: relative;
 }
 
-/* aside da lojinha */
-.site-aside {
+.site-main > section {
+  width: 48%;
+  height: 600px;
+  vertical-align: middle;
+  margin: 0 auto;
 }
+
+.description {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+.description h2 {
+  margin-bottom: 50px;
+}
+.description p {
+  font-size: 24px;
+  line-height: 2;
+  color: var(--menuTexto);
+  margin: 40px auto;
+}
+
+.description span.link-container {
+  display: inline-block;
+  min-width: 200px;
+  height: 80px;
+  margin: 20px auto;
+  background-color: var(--menuFundo);
+  margin-right: 50px;
+  border-radius: 10px;
+}
+.description span.link-container a {
+  color: var(--menuTextoHover);
+}
+
+#veja {
+  background-color: var(--menuFundo);
+  padding: 10px;
+  animation: border-dance 6s infinite linear;
+  width: 200px;
+  height: 100px;
+}
+
+.description .acesso {
+  width: 200px;
+  min-width: 200px;
+  height: 80px;
+}
+
+.product {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.image-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+@keyframes faca-elevar {
+  /*o cosmo no seu coracao... */
+  0% {
+    margin-top: 50px;
+  }
+  50% {
+    margin-top: 150px;
+  }
+  100% {
+    margin-top: 50px;
+  }
+}
+
+.product-image {
+  min-width: 200px;
+  width: 450px;
+  height: 400px;
+  margin: 50px;
+  animation-name: faca-elevar;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+/* footer - as pernas da minha lojinha */
+
+.site-footer {
+}
+
+.coluna-container {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.coluna-container > nav {
+  display: inline-block;
+  margin: 0 auto;
+  height: 150px;
+  font-size: 26px;
+  vertical-align: middle;
+  color: var(--menuTexto);
+}
+
+.coluna-container p {
+  font-size: 36px;
+  color: var(--textofundo);
+  text-align: center;
+}
+.contato {
+  text-align: left;
+  float: left;
+}
+
+.contato ul {
+}
+
+.contato-titulo {
+  display: block;
+  clear: both;
+}
+.contato ul li {
+  width: 180px;
+  height: 80px;
+  margin: 10px 20px;
+  font-size: 24px;
+  padding: 0 10px;
+  float: left;
+  background-color: var(--menuTextoHover);
+  color: #000;
+  font-size: 28px;
+  border-radius: 10px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.contato > ul > li:not(:first-of-type):hover {
+  background-color: var(--menuTextoHover);
+  color: #000;
+}
+
+.contato > ul > li img {
+  width: 80px;
+  height: 80px;
+}
+
 .redes-sociais {
+  float: right;
 }
 .redes-sociais p {
+}
+.redes-sociais li {
+  width: 180px;
+  height: 80px;
+  background-color: var(--menuTextoHover);
+  display: inline-block;
+  float: right;
+  border-radius: 10px;
+  margin: 10px 20px;
+  text-align: center;
+}
+
+.redes-sociais a {
+  display: inline-block;
 }
 .redes-sociais a {
 }
@@ -206,30 +415,40 @@ body {
   height: 80px;
 }
 
-/* footer - as pernas da minha lojinha */
+.copyright {
+  display: block;
+  clear: both;
+  color: var(--textofundo);
+  text-align: center;
+  font-size: 24px;
+  color: var(--menuTexto);
+}
 
 /* campos - botoezinhos e caixinhas */
 
 /* tiver mais classificacao para organizar por aqui em baixo */
 
-
-
-
 /* medias */
 
 @media (max-width: 1300px) {
-  .header-msg{
+  .site-header {
+    height: 250px;
+  }
+  .header-msg {
     float: none;
     margin: 0 auto;
     text-align: center;
   }
-}
-@media (max-width: 1000px) {
-  .header-msg{
+  .header-menu {
     float: none;
     margin: 0 auto;
   }
-
+}
+@media (max-width: 1000px) {
+  .header-msg {
+    float: none;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 800px) {
@@ -238,21 +457,19 @@ body {
     margin: 0 auto;
     max-width: 200px;
   }
-  .header-msg{
+  .header-msg {
     margin: 0 auto;
     float: none;
   }
-  .link-container{
+  .link-container {
     width: 100px;
   }
   .link-container li {
     display: none;
-
   }
   .link-container li:nth-of-type(1) {
     display: block;
   }
   a {
   }
-
 }
