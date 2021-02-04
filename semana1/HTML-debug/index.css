@@ -18,6 +18,10 @@ h2 {
   text-align: center;
 }
 
+a {
+  text-decoration: none;
+}
+
 input {
   height: 20px;
   width: 500px;
