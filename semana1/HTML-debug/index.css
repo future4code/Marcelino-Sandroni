@@ -35,6 +35,11 @@ button:hover {
   filter: brightness(80%);
 }
 
+button,
+input {
+  outline: none;
+}
+
 img {
   width: 100px;
 }
