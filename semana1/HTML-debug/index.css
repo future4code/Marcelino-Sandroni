@@ -25,6 +25,10 @@ button:focus {
   color: white;
 }
 
+button:hover {
+  filter: brightness(80%);
+}
+
 img {
   width: 100px;
 }
