@@ -1,0 +1,188 @@
+/*
+ * @name: mi-portfolio stylesheet
+ * @author = Marcelino Sandroni
+ */
+
+/* reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border;
+  list-style: none;
+  text-decoration: 0;
+}
+
+/* typografy */
+
+h1,
+h2,
+h3,
+p,
+a {
+  font-family: "Raleway", sans-serif;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bolder;
+  line-height: 40px;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 40px;
+}
+
+p {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 40px;
+}
+
+/* links */
+
+a:hover {
+  color: #28292a;
+}
+
+/* layout */
+
+.container {
+}
+
+.header {
+  background-color: #1040e2;
+}
+
+/* header */
+.header h1,
+.header a {
+  color: #fff;
+}
+:root {
+  --headerHeight: 50px;
+}
+
+.header > * {
+  width: 570px;
+  height: 50px;
+  display: inline-block;
+}
+
+.header-logo {
+  margin-left: 73px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.header-logo h1 {
+  line-height: 50px;
+}
+
+.header-menu {
+  text-align: center;
+}
+
+.header-menu ul * {
+  width: calc(570/5);
+  height: var(--headerHeight);
+
+}
+
+.header-menu li {
+  display: inline-block;
+  width: calc(570 / 5);
+  margin: 0 20px;
+  height: var(--headerHeight);
+  position: relative;
+}
+
+.header-menu li:hover {
+  background-color: #28292a;
+  transform: skew(-45deg,0);
+
+}
+
+.bg-menu {
+}
+
+/* .bg-menu:hover {
+} */
+/* .bg-menu:active {
+  background-color: #28292a;
+  transform: skew(-45deg,0);
+ } */
+
+.header-menu a {
+  font-size: 20px;
+  line-height: 2;
+  height: var(--headerHeight);
+}
+
+.header-menu a:hover .article-main h2 {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #28292a;
+  /* transform: skew(-45deg,0); */
+
+}
+.header-menu a:hover {
+  color: red;
+  transform: skew(45deg,0);
+}
+
+/* utils */
+
+article {
+  position: relative;
+  height: calc(100vh - var(--headerHeight));
+}
+
+article h2{
+  line-height: 200px;
+}
+article h2,
+article p {
+  /* position: static; */
+}
+
+.article-main {
+  width: 50%;
+  height: 80%;
+  /* padding: 0 50px; */
+  padding-left: 120px;
+  margin: auto;
+  text-align: left;
+}
+
+.bg-triangle {
+  position: absolute;
+  width: calc(100vw / 2);
+  height: calc(100vh / 2);
+}
+
+.bg-top {
+  background-image: linear-gradient(
+    to right bottom,
+    black 49.8%,
+    rgba(0,0,1,0.5) 49.9%,
+    transparent 50%
+  );
+  top: 0;
+  left: 0;
+}
+.bg-bottom {
+  background-image: linear-gradient(
+    to left top,
+    black 49.8%,
+    rgba(0,0,1,0.5) 49.9%,
+    transparent 50%
+  );
+  bottom: 0;
+  right: 0;
+}
