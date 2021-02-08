@@ -487,5 +487,42 @@ input[type="submit"]:hover {
   background-color: black;
   color: #fff;
   font-size: 50px;
-  padding: 50px;
+}
+
+.network {
+  display: flex;
+  justify-content: center;
+  flex-wrap: no wrap;
+  width: 1000px;
+  margin: 0 auto;
+  padding-top: 100px;
+
+}
+
+.network li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.network li:hover {
+
+}
+
+.network a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+
+.network img {
+  width: 100px;
+  height:100px;
+}
+
+.author,
+.copyright {
+  color: #646464;
+  width: 800px;
+  margin: 20px auto;
+  text-align: center;
 }
