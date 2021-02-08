@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Nome da Loja</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header id="site-header">
+      <div id="msg-header">
+        <h1>Bem-vindo a <em>BOOM!</em></h1>
+        <img id="logo" src="./images/logo.png" widht="200" height="200" />
+        <h2>A loja que <strong>explode!!!</strong></h2>
+      </div>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html" >Início</a>
+          </li>
+          <li>
+            <a href="ctrl-estoque.html" >Estoque</a>
+          </li>
+          <li>
+            <a href="add-produto.html" >Produto</a>
+          </li>
+          <li>
+            <a href="funcionarios.html" >Funcionários</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="main-container">
+
+
+    <h2>Modulo para Adicionar Produto</h2>
+
+    <p>Aqui onde rola todo o controle dos nossos queridos produtos para venda online!</p>
+
+
+    <img src="https://picsum.photos/600/300" alt="Fotinha bunita aleatoria">
+
+    <p>
+      Insira abaixo os dados dos novos produtos para cadastrar em nosso estoque.
+    </p>
+    <form action="">
+      <div>
+        <label for="link-foto">Link para foto: </label>
+        <input type="url" id="link-foto" name="link-foto" required />
+      </div>
+
+      <div>
+        <label for="descricao">Descrição do produto: </label>
+        <!-- Adicione o id apropriado para o input abaixo -->
+        <input type="text" id="descricao" name="descrição" required />
+      </div>
+
+      <div>
+        <label for="preco">Preço (em R$): </label>
+        <!-- Adicione o id apropriado e o type para receber números abaixo -->
+        <input
+          type="number"
+          id="preco"
+          name="preço"
+          min="0"
+          step="any"
+          required
+        />
+      </div>
+
+      <div>
+        <!-- Preencha as propriedades necessárias para os elementos abaixo -->
+        <label for="quantidade">Quantidade disponível: </label>
+        <input type="number" id="quantidade" name="quantidade" required />
+      </div>
+
+      <div class="form-add">
+        <!-- Adicione ao type do botão abaixo o valor para que ele submeta o formulário -->
+        <button type="submit">Adicionar</button>
+      </div>
+    </form>
+
+    <section>
+      <article>
+        <h4>Regras dos produtos</h4>
+        <p>
+          Abaixo veja as regras para o correto controle dos produtos na lojinha:
+        </p>
+        <ol>
+          <li>Regra numero 1</li>
+          <li>Regra numero 2</li>
+          <li>Regra numero 3</li>
+          <li>Regra numero 4</li>
+          <li>Regra numero 5</li>
+          <li>Regra numero 6</li>
+          <li>Regra numero 7</li>
+          <li>Regra numero 8</li>
+          <li>Regra numero 9</li>
+          <li>Regra numero 10</li>
+        </ol>
+      </article>
+      <article>
+        <h3>Calculo de Preco</h3>
+        <p>
+          O preco do produto deve ser sempre, mas sempre, nunca esqueca disto,
+          pois eh sempre para ser <strong>O DOBRO DO VALOR!</strong>
+        </p>
+      </article>
+      <article>
+        <h3>Aviso aos funcionarios</h3>
+        <p>
+          Qualquer prejuizo, perda ou omissao sera descontado de seus salarios,
+          fique esperto, nao seja vacilao
+        </p>
+      </article>
+    </section>
+      <main id="site-footer">
+      <div class="contato">
+        <nav>
+          <ul>
+            <li id="contato-titulo">Contatinhos:</li>
+            <li>Emailton</li>
+            <li>Telefonix</li>
+            <li>Zapi Zapi</li>
+            <li>Telegrama do Gugu</li>
+          </ul>
+        </nav>
+      </div>
+
+      <p class="copyright">2021@ All rights reserved. Boom Inc</p>
+    </main>
+    </footer>
+  </body>
+</html>

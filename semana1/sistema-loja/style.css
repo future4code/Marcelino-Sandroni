@@ -1,262 +1,486 @@
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+/* @CSS sistema de minha lojinha */
 
-@import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@1,500&display=swap");
+/* Resetando os paraunaues */
 
-@import url('https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap');
-/* Variaveis de cores */
-
-html,
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
 }
 
+/* Variaveis cores para eu n me perder*/
 :root {
-  --vermelho: #ff7a18;
-  --preto: #171717;
-  --cinzaEscuro: #373436;
-  --cinza: #787878;
-  --cinzaClaro: #c0c0c0;
+  --logo: #f4f3f5;
+  --titulo: #f4f3f5;
+  --paragrafo: #a79fae;
+  --menuTexto: #a79fae;
+  --menuTextoHover: #335d86;
+  --menuFundo: #00f893;
+  --fundo1: #030108;
+  --fundo2: #3a3858;
+  --fundo3: #335d86;
+  --textofundo: #02b484;
+  --detalhes: #dd23eb;
 }
 
-/* Textos */
+/* Tipografia de mi Lojinha */
+
+/* Fonts tops da balada */
+
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("./fonts/pressstart2p-regular-webfont.woff");
+}
+@font-face {
+  font-family: "Shojumaru";
+  src: url("./fonts/shojumaru-regular-webfont.woff");
+}
+
+h1 {
+  font-family: "Press Start 2P", cursive;
+  color: var(--titulo);
+}
+h2,
+h3 {
+  font-family: "Yusei Magic", sans-serif;
+  color: var(--titulo);
+}
+
+p {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: var(--paragrafo);
+}
+
+a,
+.contato p,
+.redes-sociais p {
+  font-family: Shojumaru, cursive;
+}
+
+/* Tamanho dos textinhos */
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+p {
+  font-size: 18px;
+}
+
+/* Decoracao dos textinhos */
 
 h1,
 h2,
 h3 {
-  color: white;
+  text-transform: uppercase;
+}
+strong {
+  font-weight: bold;
 }
 
-h1 {
-  font-size: 2.5em;
+em {
+  font-style: italic;
 }
 
-h2 {
-  font-size: 2em;
+mark {
+  background-color: lime;
 }
 
-p {
-  font-family: arial, sans-serif;
-  color: var(--preto);
+cite {
 }
 
-/* Imagens */
-
-/* Header */
-body {
-  background: linear-gradient(130deg, #ff7a18, #af002d 41.07%, #319197 76.05%);
+u {
+  font-style: oblique;
 }
+/* Links */
 
-#site-header,
-#site-footer,
-aside p {
-  text-align: center;
-  font-family: "Permanent Marker", cursive;
-  text-shadow: 0 4px 4px rgb(0 0 0 / 50%);
+.link-container {
+  max-width: calc(200px * 5);
+  min-width: calc(200px * 4);
+  width: 50vw;
 }
-
-#msg-header {
-  margin: 0 auto;
-}
-#msg-header > * {
+span.link-container,
+.link-container > li {
   display: inline-block;
-  vertical-align: middle;
+  max-width: 180px;
 }
 
-#site-header h1 {
-  vertical-align: top;
-  margin-top: 50px;
+a {
+  display: inline-block;
+  color: var(--menuTexto);
+  text-transform: uppercase;
+  font-size: 18px;
+  border-radius: 4px;
+  width: 180px;
+  min-width: 150px;
+  height: 80px;
+  min-height: 80px;
+  line-height: 80px;
+  text-align: center;
 }
 
-#logo {
-  margin: 0 auto;
+a:visited {
+  color: var(--menuTexto);
 }
 
-#site-header h2 {
-  margin-top: 100px;
+a:hover {
+  color: var(--menuTextoHover);
 }
 
-/* Navigation */
-
-#site-header nav {
-  width: 100%;
+a:active {
+  color: var(--menuTexto);
 }
-
-#site-header nav ul {
-  list-style: none;
-  /* background: #333; */
-  width: 100%;
-  background: rgb(51, 51, 51);
+/* Estrutura principal de mi lojinha */
+body {
+  background-color: var(--fundo1);
+  background: rgb(3, 1, 8);
   background: linear-gradient(
-    180deg,
-    rgba(51, 51, 51, 1) 0%,
-    rgba(0, 0, 0, 1) 100%
+    to right,
+    rgba(3, 1, 8, 1) 0%,
+    rgba(58, 56, 88, 1) 100%
   );
 }
 
-#site-header li {
-  width: 180px;
-  height: 100px;
-  display: inline-block;
-  margin: 0 10px;
-}
-
-#site-header li:hover {
-  border-radius: 20px;
-}
-
-#site-header a {
-  color: white;
-  text-decoration: none;
-  font-size: 2em;
-  height: 100px;
+.site-container {
   width: 100%;
-  display: block;
-  margin: 25px auto;
-}
-#site-header a:visited {
-  color: white;
+  min-height: 900px;
+  /* background: rgb(3, 1, 8);
+  background: linear-gradient(
+    90deg,
+    rgba(3, 1, 8, 1) 0%,
+    rgba(58, 56, 88, 1) 100%
+  ); */
+  background: linear-gradient(
+    to bottom,
+    rgba(3, 1, 8, 1) 0%,
+    rgba(58, 56, 88, 0.15) 100%
+  );
+  height: 100vh;
 }
 
-#site-header a:hover {
-  color: var(--vermelho);
-}
-
-/* Content */
-
-main {
+.site-header {
+  width: 80%;
+  min-width: 500px;
+  max-width: 1500px;
+  height: 100px;
   margin: 0 auto;
-  padding: 50px 10vw;
-  width: 100%;
-  height: 600px;
-  overflow: hidden;
-  font-family: "Asap", sans-serif;
-  text-align: center;
-  color: #373436;
 }
 
-.main-container {
-  display: inline-block;
-  width: 60%;
-  max-width: 600px;
-  height: 600px;
-  filter: blue(2px);
-  background: #333;
-  box-shadow: 15px 15px 5px rgba(0, 0, 0, 2);
-  margin-right: 5vw;
-  vertical-align: top;
+.site-main {
+  width: 80%;
+  margin: 50px auto;
+  clear: both;
+}
+
+.site-footer {
+  margin: 0 auto;
+  display: block;
+  /* width: 80%; */
+  padding: 0 10%;
+  background: linear-gradient(
+    to top,
+    rgba(3, 1, 8, 1) 0%,
+    rgba(58, 56, 88, 0) 100%
+  );
+  height: 300px;
+}
+
+/* header - o cabecao da minha lojinha */
+/* .site-header  */
+
+.header-msg {
+  float: left;
+  padding-left: 38px;
+}
+
+.header-msg h1 {
+  padding-top: 75px;
+}
+
+/* menu da lajinha em cima */
+
+.header-menu {
+  width: calc(180px * 4);
+  float: right;
+  padding-top: 50px;
+  margin-right: 170px;
+}
+
+.header-menu li,
+.header-menu a {
+
+}
+.header-menu li {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-radius: 20px;
+
+}
+
+.header-menu a{
+  width: 180px;
+
+}
+
+.header-menu li:hover {
+  box-shadow: 8px 8px 1px var(--textofundo);
+  border: 2px solid gray;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  background-color: var(--menuFundo);
+}
+
+.header-menu a:hover {
+}
+
+/* main - o miolo da minha lojinha */
+
+.site-main {
+  width: 80%;
   position: relative;
 }
 
-.main-container h2 {
-  font-size: 3em;
-  margin: 10px;
+.site-main > section {
+  width: 48%;
+  height: 550px;
+  vertical-align: middle;
+  margin: 0 auto;
 }
 
-@keyframes oloko-bixo {
-  0%   {transform: rotate(0deg); font-size: 2em }
-  10%  {transform: rotate(35deg); font-size: 3em }
-  20%  {transform: rotate(70deg); font-size: 2em }
-  30%  {transform: rotate(105deg); font-size: 3em }
-  40%  {transform: rotate(140deg); font-size: 2em }
-  50%  {transform: rotate(175deg); font-size: 3em }
-  60%  {transform: rotate(210deg); font-size: 2em }
-  70%  {transform: rotate(240deg); font-size: 3em }
-  80%  {transform: rotate(270deg); font-size: 3em }
-  90%  {transform: rotate(300deg); font-size: 3em }
-  100% {transform: rotate(335deg); font-size: 2em }
-
-}
-
-.main-container p {
-  font-size: 3em;
-  color: var(--vermelho);
-  transform: rotate(-20deg);
-  margin-top: 40px;
-  margin-left: 50px;
-  animation-name: oloko-bixo;
-  animation-duration: 5s;
-  z-index: 2;
-}
-
-.main-container img {
-  width: 100%;
-  height: 90%;
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  z-index: 1;
-}
-
-aside {
+.description {
   display: inline-block;
-  width: 30%;
-  max-width: 300px;
-  height: 600px;
-  background: #333;
-  box-shadow: 8px 8px 5px rgba(0, 0, 0, 2);
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+.description h2 {
+  margin-bottom: 50px;
+}
+.description p {
+  font-size: 24px;
+  line-height: 2;
+  color: var(--menuTexto);
+  margin-bottom: 10px;
 }
 
-.redes-sociais p {
-  color: white;
+.description span.link-container {
+  display: inline-block;
+  min-width: 200px;
+  height: 80px;
   margin: 20px auto;
-  font-size: 2.5em;
+  background-color: var(--menuFundo);
+  margin-right: 50px;
+  border-radius: 10px;
+}
+.description span.link-container a {
+  color: var(--menuTextoHover);
+  line-height: 30px;
 }
 
-.redes-sociais a {
-  display: block;
-  margin: 30px;
+#veja {
+  background-color: var(--menuFundo);
+  padding: 10px;
+  animation: border-dance 6s infinite linear;
+  width: 200px;
+  height: 100px;
+  line-height: 10px;
+  box-shadow: 8px 8px 1px var(--textofundo);
+  border: 2px solid gray;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  max-width: 600px;
+  transition: width 0.5s linear;
 }
 
-@keyframes crescer {
-  0% {width: 80px; height: 80px}
-  50%{width: 90px; height: 90px}
-  100%{width: 100px; height: 100px}
+#veja a {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  transition: width 0.5s linear;
 }
 
-.redes-sociais img:hover {
-  animation-name: crescer;
-  animation-duration: 2s;
+#veja:hover {
+  width: 600px;
+}
+#veja a:hover{
+  width: 580px;
+  /* margin-left: 200px; */
 }
 
-#site-footer {
-  height: 200px;
+.description .acesso {
+  width: 200px;
+  min-width: 200px;
+  height: 80px;
+  display: none;
 }
 
-#site-footer p {
-  font-size: 2em;
-}
-
-#site-footer div {
+.product {
   display: inline-block;
+  margin: 0 auto;
+  padding: 20px 40px;
 }
 
-.contato ul {
-  list-style: none;
+@keyframes faca-elevar {
+  /*o cosmo no seu coracao... */
+  0% {
+    margin-top: 50px;
+  }
+  50% {
+    margin-top: 130px;
+  }
+  100% {
+    margin-top: 50px;
+  }
 }
 
-#contato-titulo {
-  font-size: 3.5em;
+.product-image {
+  min-width: 200px;
+  width: 450px;
+  height: 400px;
+  margin: 50px;
+  animation-name: faca-elevar;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+  animation-timing-function: ease-in-out;
 }
 
-.contato li {
-  font-family: 'Hachi Maru Pop', cursive;
-  /* transform: rotate(20deg); */
-  font-size: 2em;
+/* footer - as pernas da minha lojinha */
+
+.site-footer {
+}
+
+.coluna-container {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  padding-left: 20px;
+}
+
+.coluna-container > nav {
+  display: inline-block;
+  margin: 0 auto;
+  height: 150px;
+  font-size: 26px;
+  vertical-align: middle;
+  color: var(--menuTexto);
+}
+
+.coluna-container p {
+  font-size: 36px;
+  color: var(--textofundo);
+  text-align: center;
+  margin-bottom: 20px;
+}
+.coluna-container img {
+  width: 60px;
+  height: 60px;
+}
+
+.coluna-container li {
+  width: 150px;
+  height: 80px;
+  padding-top: 10px;
+  background-color: var(--menuTextoHover);
+  display: inline-block;
+  float: right;
+  border-radius: 10px;
+  margin: 10px 20px;
+  text-align: center;
+}
+
+.coluna-container a {
+  width: 60px;
+  height: 60px;
+}
+
+.coluna-container li:hover {
+  height: 100px;
+  /* margin-top: -20px; */
+  background: var(--textofundo);
+  border-radius: 15px;
+  padding-top: 5px;
+}
+
+.coluna-container a:hover {
+  margin-top: -20px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: var(--menuFundo);
+}
+
+.contato {
   float: left;
-  margin: 20px 10px;
 }
 
-.contato li:hover {
-  animation-name: treme-treme;
-  animation-duration: 3s;
+.redes-sociais {
+  float: right;
 }
 
-@keyframes treme-treme {
-  0% {font-size: 2em}
-  100% {font-size: 3em}
-}
 .copyright {
-  font-size: 3em;
+  clear: both;
+  color: var(--textofundo);
+  text-align: center;
+  font-size: 24px;
+  color: var(--menuTexto);
+  padding-top: 50px;
+}
+
+/* campos - botoezinhos e caixinhas */
+
+/* tiver mais classificacao para organizar por aqui em baixo */
+
+/* medias */
+
+@media (max-width: 1300px) {
+  .site-header {
+    height: 250px;
+  }
+  .header-msg {
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .header-menu {
+    float: none;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1000px) {
+  .header-msg {
+    float: none;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .header-menu {
+    float: none;
+    margin: 0 auto;
+    max-width: 200px;
+  }
+  .header-msg {
+    margin: 0 auto;
+    float: none;
+  }
+  .link-container {
+    width: 100px;
+  }
+  .link-container li {
+    display: none;
+  }
+  .link-container li:nth-of-type(1) {
+    display: block;
+  }
+  a {
+  }
 }

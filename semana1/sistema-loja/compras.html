@@ -1,3 +1,13 @@
+<!--
+
+Página de Venda: Deve conter um formulário
+no qual o vendedor coloque cada produto que
+o cliente está comprando. Crie uma lista com
+esses produtos. Coloque, também, as opções de
+pagamento: dinheiro ou cartão
+
+-->
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -38,26 +48,83 @@
       </header>
 
       <main class="site-main">
-        <section class="description">
-          <h2 class="missao">Só produto top, confia na lojinha!</h2>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur
-            rem quisquam, id delectus rerum similique odio quas, aperiam animi
-            itaque quos dolor omnis. Inventore, voluptate?
-          </p>
-          <span class="link-container" id="veja">
-            <a href="./ctrl-estoque.html">Compre <br>Agora</a>
-          </span>
-          <!-- <span class="link-container, acesso">
-            <a href="#">acesso</a>
-          </span> -->
-        </section>
-        <section class="product">
-          <img class="product-image" src="./images/placamaeasus.png" />
-          <!-- <img class="image-bg" src="./images/footer-smoke.png" /> -->
-        </section>
+        <!-- ! INICIO conteudo da pagina semarada -->
 
-        <aside class="site-aside"></aside>
+        <div class="lista-compras">
+
+         <form action="">
+<fieldset>
+  <legend>Carrinho de compras</legend>
+  <table>
+<thead>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+      <th>Subtotal</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+      <td>Produto1</td>
+      <td>1</td>
+      <td>R$ 100,00</td>
+      <td>100,00</td>
+    </tr>
+    <tr>
+      <td>Produto1</td>
+      <td>1</td>
+      <td>R$ 100,00</td>
+      <td>100,00</td>
+    </tr>
+    <tr>
+      <td>Produto1</td>
+      <td>1</td>
+      <td>R$ 100,00</td>
+      <td>100,00</td>
+    </tr>
+    <tr>
+      <td>Produto1</td>
+      <td>1</td>
+      <td>R$ 100,00</td>
+      <td>100,00</td>
+    </tr>
+</tbody>
+<tfooter>
+<tr>
+  <td colspan=2>Total</td>
+  <td colspan=2>R$ 400,00</td>
+</tr>
+</tfooter>
+  </table>
+
+
+  <div class="dados-pagamento">
+    <h3>Forma de pagamento</h3>
+    <input type=radio id=boleto value=boleto>
+    <label for="boleto">Boletao</label>
+    <input type=radio id=pix value=pix>
+    <label for="pix">Pix</label>
+    <input type=radio id=cartao value=cartao>
+    <label for="cartao">Cartao</label>
+
+  </div>
+1 HEADER
+2 FOOTER
+3 MAIN
+4 ASIDE
+5 MAIN
+6 INICIO SECTION ARTICLE
+7 FIM SECTION ARTICLE
+
+
+        </div>
+
+
+</fieldset>
+
+         </form> 
+        <!-- ! FIM conteudo da pagina semarada -->
       </main>
 
       <footer class="site-footer">
