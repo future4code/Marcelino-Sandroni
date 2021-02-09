@@ -1,0 +1,108 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    color: white;
+    display: flex;
+}
+
+.green-background {
+    background-color: green;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.yellow-background {
+    background-color: yellow;
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pink-background {
+    background-color: fuchsia;
+    flex: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blue-background {
+    background-color: blue;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.red-background {
+    background-color: red;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightgreen-background {
+    background-color: lightgreen;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.purple-background {
+    background-color: purple;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    flex: 1;
+}
+
+#top-container {
+    display: flex;
+    flex: 1;
+}
+
+#middle-container {
+    flex: 4;
+    display: flex;
+}
+
+#content2 {
+    flex: 2;
+    display: flex;
+}
+
+#blank {
+    flex: 1;
+}
+
+#vertical-middle-container {
+    display: flex;
+    flex-flow: column wrap;
+    flex: 1;
+}
+
+#image,
+#extra {
+    flex: 1;
+    display: flex;
+}
+
+#main-container > div:last-child {
+    display: flex;
+    flex: 1;
+}
