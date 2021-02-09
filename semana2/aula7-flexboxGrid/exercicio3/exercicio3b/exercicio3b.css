@@ -13,6 +13,7 @@ body {
 
 .yellow-background {
     background-color: yellow;
+    grid-row: 2 / 5;
 }
 
 .pink-background {
@@ -33,4 +34,10 @@ body {
 
 .purple-background {
     background-color: purple;
+}
+
+#main-container {
+    display: grid;
+    height: 100%;
+    grid-template: repeat(4, 1fr) / 1fr, 4fr, repeat(3, 1fr);
 }
