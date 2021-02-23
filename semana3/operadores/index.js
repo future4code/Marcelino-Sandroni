@@ -119,3 +119,7 @@ console.log(gallons + 'gal equivalem a ' + liters + 'l')
 let cups = 450
 liters = cups / 4
 console.log(cups +'xic equivalem a ' + liters + 'l')
+
+cups = prompt('Insira quantidade de xicaras para converter em litros:')
+liters = cups / 4
+console.log(cups +'xic equivalem a ' + liters + 'l')
