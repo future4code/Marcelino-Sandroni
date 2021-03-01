@@ -1,65 +1,33 @@
-/**
- * EXEMPLO DE UTILIZAÇÃO DA 'comprarCarta'
- * 
- * 
-    const carta = comprarCarta(); // Sorteia uma carta. Por exemplo, o rei de ouros
-    
-    console.log(carta.texto) // imprime o texto da carta. Exemplo: "K♦️" (indica "K" de ouros)
-    console.log(carta.valor) // imprime o valor da carta (um número). Exemplo: 10 (dado que "K" vale 10)
- * 
- * 
- * 
- */
 
-const getCards = amount => {
+//DESAFIO apenas no console
+const style = 'color: tomato; font-size: 24px'
+const { log } = console
+const msg = text => log(`%c${text}`, style)
 
+log(`%cBem vindo ao jogo de BlackJack! \u{1F92B}`, style)
+let response = confirm(`Quer iniciar uma nova rodada? \u{1F914}`)
+
+if(response) {
   let cards = []
-  while(amount--) {
-    cards.push(comprarCarta())
+  let playerScore = computerScore = 0
+
+  let i = 1
+  while (i++ <= 4) cards.push(comprarCarta())
+
+  let hand = cards.map(card => card.texto)
+  playerScore = cards[0].valor + cards[1].valor
+  computerScore = cards[2].valor + cards[3].valor
+
+  msg(`Usuario - cartas: ${hand[0]} ${hand[1]} - ${playerScore}`)
+  msg(`Computador - cartas: ${hand[2]} ${hand[3]} - ${computerScore}`)
+
+  if(playerScore > computerScore) {
+    msg(`Usuario ganhou!`)
+  } else if (playerScore < computerScore) {
+    msg(`Computador ganhou!`)
+  } else {
+    msg(`Parece que temos um empate...`)
   }
-  return cards
-}
-
-let board = {
-  player: {
-    cards: [],
-    values: [],
-    score: 0
-    
-  },
-  dealer: {
-    cards: [],
-    values: [],
-    score: 0
-  },
-  start() {
-  },
-  buy(side) {
-    const { card, value } = comprarCarta()
-    this[side].cards.push(card)
-    this[side].values.push(value)
-  },
-  calcScore() {
-    this.player.values.reduce((sum, value) => sum += value, 0)
-
-  },
-  verify() { //retorna o vencedor em string, ou false para empate
-    //se jogador maior que 21 perdeu
-    //senao se pc maior que 21 ganhou
-    //senao se se jogador maior que pc ganhou
-    //senao se jogador menor que pc perdeu
-    //senao empate
-    if (this.player.score > 21) {
-      return ''
-
-    } else {
-        return false
-      }
-
-  },
-  reset() {
-    const empty = { cards: [], values: [], score: 0 }
-    Object.assign(this.player, empty)
-
-  }
+} else {
+  msg(`O jogo acabou...`)
 }

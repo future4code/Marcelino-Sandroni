@@ -1,99 +1,189 @@
-/**
- * EXEMPLO DE UTILIZAÇÃO DA 'comprarCarta'
- * 
- * 
-    const carta = comprarCarta(); // Sorteia uma carta. Por exemplo, o rei de ouros
-    
-    console.log(carta.texto) // imprime o texto da carta. Exemplo: "K♦️" (indica "K" de ouros)
-    console.log(carta.valor) // imprime o valor da carta (um número). Exemplo: 10 (dado que "K" vale 10)
- * 
- * 
- * 
- */
 const gameBoard = document.querySelector('.game-board')
-const startButton = document.querySelector('button')
+const startButton = document.querySelector('.play-button')
 const alert = document.querySelector('.alert')
 const aces = document.querySelector('.aces')
 
 const cardPack = document.querySelector('.card-pack')
 
-const playerScore = document.createElement('.player-score')
-const computerScore = document.createElement('computer-score')
-const playerHand = document.createElement('player-hand')
-const computerHand = document.createElement('computer-hand')
+const playerScore = document.querySelector('.player-score')
+const computerScore = document.querySelector('.computer-score')
+const playerHand = document.querySelector('.player-hand')
+const computerHand = document.querySelector('.computer-hand')
 
-let game = {
-  player: 0,
-  start(event) {
-    //console.log(`Clicou no ${event.target.tagName}`)
-    startButton.classList.add('invisible')
-    alert.classList.add('invisible')
-    aces.classList.add('invisible')
+let buttonPush, buttonStart
 
+let playerCards = []
+let computerCards = []
 
-  },
-  buildDech() {
-    []
+const start = target => {
+  startButton.classList.add('invisible')
+  alert.classList.add('invisible')
+  aces.classList.add('invisible')
 
-  }
+  let cards = document.createElement('img')
+  cards.src = './png/red_back.png'
+  cardPack.append(cards)
+
+  buttonPush = document.createElement('button')
+  buttonPush.textContent = 'Comprar'
+  cardPack.appendChild(buttonPush)
+
+  buttonStop = document.createElement('button')
+  buttonStop.textContent = 'Parar'
+  cardPack.appendChild(buttonStop)
+
+  pushCards(playerHand, playerCards, 2)
+  pushCards(computerHand, computerCards, 2, true)
+
+  playerScore.textContent = playerCards.reduce((sum, {valor}) => sum += valor, 0)
+  computerScore.textContent = computerCards[0].valor + ' + ???'
+  computerScore.textContent = playerCards.reduce((sum, {valor}) => sum += valor, 0)
+
+  gameBoard.removeEventListener('click', start)
+  buttonPush.addEventListener('click', playerPushCards)
+  buttonStop.addEventListener('click', computerPushCards)
+
 }
 
-gameBoard.addEventListener('click', game.start)
+const unhideCards = (element, hand) => {
+  element.childNodes.forEach( (img, index) => {
+    console.log(`${typeof img.src} => ${img.src} tem black dentro? ${img.src.includes('back')}`)
+    if(img.src.includes('red_back')) {
+      let cardText = hand[index].texto
+      console.log(`Tem red_black na card: ${cardText}`)
+      img.src = img.src.replace('red_back', cardText) 
+    }
+  })
+}
 
+const playerPushCards = e => {
+  pushCards(playerHand, playerCards)
+  score = getPlayerScore()
+  playerScore.textContent = score
+  if (score > 21) {
+    endGame('Computador')
+  } else if (score === 21) {
+    //computer time
+    computerPushCards()
+  }
+  console.log(score)
+}
 
+const endGame = winner => {
+  let endMsg
+  if (winner === 'player') {
+    endMsg = 'Parabéns, você ganhou!'
+  } else {
+    endMsg = 'Perdeu, tente novamente...'
+  }
+  let endElement = document.createElement('span')
+  endElement.textContent = endMsg
+  endElement.classList.add('final-message')
+  gameBoard.appendChild(endElement)
+  console.log(`End game, winner: ${winner}`)
+}
 
+const getPlayerScore = () => {
+  return playerCards.reduce((sum, {valor}) => sum += valor, 0)
+}
 
+const scoreReduce = (sum, {valor}) => sum += valor
+const getScore = side => values.reduce(scoreReduce, 0)
 
+//pegando score do jogador:
+//getScore(playerScore)
 
-const getCards = amount => {
+const computerPushCards = e => {
+  buttonPush.removeEventListener('click', playerPushCards)
+  unhideCards(computerHand, computerCards)
+  pushCards(computerHand, computerCards)
+}
 
-  let cards = []
+const buildDeck = () => {
+}
+
+const buildPlayerHand = amount => {
   while(amount--) {
-    cards.push(comprarCarta())
+    playerCards.push(comprarCarta())
   }
-  return cards
+
+  for (card of playerCards) {
+    let suit = card.texto.charAt(card.texto.length - 1)
+    let cardText = card.texto.charAt(0)
+    card.texto = card.texto.replace('♦️','D')
+    card.texto = card.texto.replace('♥️','H')
+    card.texto = card.texto.replace('♣️','C')
+    card.texto = card.texto.replace('♠️','S')
+
+    let newCard = document.createElement('img')
+
+    newCard.src = `./png/${card.texto}.png`
+    playerHand.append(newCard)
+
+    const naipes = ["♦️", "♥️", "♣️", "♠️"]
+  }
 }
 
-let board = {
-  player: {
-    cards: [],
-    values: [],
-    score: 0
-    
-  },
-  dealer: {
-    cards: [],
-    values: [],
-    score: 0
-  },
-  start() {
-  },
-  buy(side) {
-    const { card, value } = comprarCarta()
-    this[side].cards.push(card)
-    this[side].values.push(value)
-  },
-  calcScore() {
-    this.player.values.reduce((sum, value) => sum += value, 0)
+const buildComputerHand = amount => {
+  for (card of computerCards) {
+    let suit = card.texto.charAt(card.texto.length - 1)
+    let cardText = card.texto.charAt(0)
+    card.texto = card.texto.replace('♦️','D')
+    card.texto = card.texto.replace('♥️','H')
+    card.texto = card.texto.replace('♣️','C')
+    card.texto = card.texto.replace('♠️','S')
 
-  },
-  verify() { //retorna o vencedor em string, ou false para empate
-    //se jogador maior que 21 perdeu
-    //senao se pc maior que 21 ganhou
-    //senao se se jogador maior que pc ganhou
-    //senao se jogador menor que pc perdeu
-    //senao empate
-    if (this.player.score > 21) {
-      return ''
+    let newCard = document.createElement('img')
 
+    newCard.src = `./png/${card.texto}.png`
+    playerHand.append(newCard)
+
+    const naipes = ["♦️", "♥️", "♣️", "♠️"]
+  }
+}
+
+const pushCards = (side = 'player', amount = 1, hide = false) => {
+  //computerHand, playerHand
+  //computerCards, playerCards
+  //computerScore, playerScore
+  let array = []
+  let element, score
+  if (side === 'player') {
+    array = playerCards
+    element = playerHand
+    score = playerScore
+  } else {
+    array = computerCards
+    element = computerHand
+    score = computerScore
+  }
+
+  let previusValue = array.length || 0
+  let count = 0
+  if (!amount) count = 1
+  else count = amount
+  
+  while(count--) array.push(comprarCarta())
+
+  for (let i = previusValue; i < array.length; i++) {
+    array[i].texto = array[i].texto.replace('♦️','D')
+    array[i].texto = array[i].texto.replace('♥️','H')
+    array[i].texto = array[i].texto.replace('♣️','C')
+    array[i].texto = array[i].texto.replace('♠️','S')
+
+    let newCard = document.createElement('img')
+    if (!hide) {
+      newCard.src = `./png/${array[i].texto}.png`
+    } else if(array.length >= 2 && count === -1) {
+      newCard.src = `./png/${array[i].texto}.png`
+      //newCard.src = `./png/red_back.png`
     } else {
-        return false
-      }
-
-  },
-  reset() {
-    const empty = { cards: [], values: [], score: 0 }
-    Object.assign(this.player, empty)
-
+      newCard.src = `./png/red_back.png`
+    }
+    element.append(newCard)
+    score = getScore(side)
+    count++
   }
 }
+
+gameBoard.addEventListener('click', start)

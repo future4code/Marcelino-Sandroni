@@ -22,22 +22,25 @@
 
 .card-pack {
 	flex-basis: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .player-score {
-	flex-basis: 50%;
+	flex-basis: 20%;
 }
 
 .computer-score {
-	flex-basis: 50%;
+	flex-basis: 20%;
 }
 
 .player-hand {
-	flex-basis: 50%;
+	flex-basis: 70%;
 }
 
 .computer-hand {
-	flex-basis: 50%;
+	flex-basis: 70%;
 }
 
 @keyframes pisca-pisca{
@@ -45,7 +48,7 @@
 	to {opacity: 0}
 }
 
-button {
+.play-button {
 	width: 150px;
 	height: 100px;
 	flex-basis: 100%;
@@ -74,4 +77,11 @@ img {
 
 .invisible {
 	display: none;
+}
+
+.final-message {
+	position: absolute;
+	font-size: 50px;
+	color: tomato;
+	animation: pisca-pisca 1s infinite;
 }
