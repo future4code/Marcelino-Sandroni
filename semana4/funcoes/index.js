@@ -98,11 +98,11 @@ const {log} = console
 
 // 1.
 const print = item => console.log(item)
-//print('oi')
+print('oi')
 
 // 2.
 const sumThisNumbers = (numberOne, numberTwo) => print(numberOne + numberTwo)
-//sumThisNumbers(10, 20)
+sumThisNumbers(10, 20)
 
 // Desafio bolado 2
 // array para utilizar na funcao
@@ -121,12 +121,12 @@ const isEvenDoubleIt = numbers => {
 	return evenNumbersDouble
 }
 
-//console.log('Simple version: ' + isEvenDoubleIt(numbers))
+console.log('Simple version: ' + isEvenDoubleIt(numbers))
 
 // a. better
 const isEvenDoubleItBetter = n => n.filter(i => !(i % 2)).map(n => n * 2)
 
-//log(`Better version: ${isEvenDoubleItBetter(numbers)}`)
+log(`Better version: ${isEvenDoubleItBetter(numbers)}`)
 
 // b. simple
 const maxNumber = numbers => {
@@ -141,12 +141,12 @@ const maxNumber = numbers => {
 	return max
 }
 
-//console.log(maxNumber(numbers))
+console.log(maxNumber(numbers))
 
 // b. better
 const max = numbers => Math.max(...numbers)
 
-//log(max(numbers))
+log(max(numbers))
 
 // c. simple
 const biggerIndex = numbers => {
@@ -163,12 +163,12 @@ const biggerIndex = numbers => {
 	return maxNumberIndex
 }
 
-//console.log('Simple version: ' + biggerIndex(numbers))
+console.log('Simple version: ' + biggerIndex(numbers))
 
 // c. better version
 const biggerIndexBetter = n => n.findIndex(i => i === Math.max(...numbers))
 
-//log(`Better version: ${biggerIndexBetter(numbers)}`)
+log(`Better version: ${biggerIndexBetter(numbers)}`)
 
 // d. simple
 const invertArray = numbers => {
