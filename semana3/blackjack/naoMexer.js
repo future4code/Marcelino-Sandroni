@@ -36,4 +36,4 @@ function comprarCarta() {
 }
 
 //So botando um export aqui para eu aprender a usar o import
-export default comprarCarta
+//export default comprarCarta

@@ -43,6 +43,14 @@
 	flex-basis: 70%;
 }
 
+.player-hand img,
+.computer-hand img {
+	position: absolute;
+	top: 36%;
+	left: 15%;
+	transition: all 3s;
+}
+
 @keyframes pisca-pisca{
 	from {opacity: 1}
 	to {opacity: 0}
@@ -81,7 +89,19 @@ img {
 
 .final-message {
 	position: absolute;
-	font-size: 50px;
-	color: tomato;
-	animation: pisca-pisca 1s infinite;
+	font-size: 60px;
+	font-weight: bold;
+	color: black;
+	animation: pisca-pisca 1.5s infinite;
+}
+
+.reset-button {
+	position: absolute;
+	bottom: -50px;
+	font-size: 30px;
+}
+
+
+.floating-cards {
+
 }
