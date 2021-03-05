@@ -92,17 +92,15 @@ function segundoMaiorEMenor(array) {
 //Exercício 11
 
 function ordenaArray(array) {
-   // implemente sua lógica aqui
-   let ordenedArray = []
-   let max = min = array[0]
    let isArrayOrdened = false
+   const limit = array.length - 1
 
    while(!isArrayOrdened) {
       isArrayOrdened = true
 
-      for(let i = 0; i < array.length; i++) {
+      for(let i = 0; i < limit; i++) {
          if(array[i] > array[i + 1]) {
-            array.splice(i, 2, array[i + 1], array[i])
+            [array[i], array[i + 1]] = [array[i + 1], array[i]]
             isArrayOrdened = false
          }
       }
