@@ -1,8 +1,19 @@
 //Exercício 1
 
 function inverteArray(array) {
-  // implemente sua lógica aqui
-  return array.reverse()
+   // implemente sua lógica aqui
+   let invertedArray = []
+
+   // simples
+   for(let i = array.length - 1; i >= 0; i--) {
+      invertedArray.push(array[i])
+   }
+
+   // moderado
+   array.forEach((item, index) => invertedArray.unshift(array[index]))
+
+   // avançado
+   return array.reverse()
 }
 
 //Exercício 2
@@ -151,11 +162,8 @@ function criaRetangulo(lado1, lado2) {
 
 function anonimizaPessoa(pessoa) {
    // implemente sua lógica aqui
-   return Object.assign(pessoa, {nome: 'ANÔNIMO'})
-   
-   // pesquisar depois se é possível fazer destructuring assign com objetos
-   // substituindo somente os valores na direita pelos da esquerda
-   //return {...pessoa, nome: 'ANÔNIMO'}
+
+   return {...pessoa, nome: 'ANÔNIMO'}
 }
 
 // Exercício 16
@@ -233,19 +241,18 @@ function retornaPessoasNaoAutorizadas() {
 //Exercício 19
 
 const consultas = [
-  { nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
-  { nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
-  { nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
-  { nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+  { nome: "João", genero: "masculino", cancelada: false, dataDaConsulta: "01/10/2019" },
+  { nome: "Pedro", genero: "masculino", cancelada: true, dataDaConsulta: "02/10/2019" },
+  { nome: "Paula", genero: "feminino", cancelada: false, dataDaConsulta: "03/11/2019" },
+  { nome: "Márcia", genero: "feminino", cancelada: true, dataDaConsulta: "04/11/2019" }
   ]
 
 function retornaEmailConsulta() {
-  // implemente sua lógica aqui
-   let email = consulta => {
+   const email = consulta => {
       let {nome, genero, cancelada, dataDaConsulta} = consulta
       genero = genero === 'masculino' ? 1 : 0
 
-      if(cancelada) {
+      if(!cancelada) {
          return `Olá, ${genero ? 'Sr.' : 'Sra.'} ${nome }. Estamos enviando esta\
  mensagem para lembrá-l${genero ? 'o' : 'a'} da sua consulta no dia \
 ${dataDaConsulta}. Por favor, acuse o recebimento deste-email.`
@@ -273,7 +280,10 @@ const contas = [
 function atualizaSaldo() {
   // implemente sua lógica aqui
    const somarCompras = (soma, compra) => soma + compra
-   contas.forEach(conta => conta.saldoTotal -= conta.compras.reduce(somarCompras, 0))
+
+   contas.forEach(conta => conta.saldoTotal -= 
+      conta.compras.reduce(somarCompras, 0))
+
    return contas
 }
 
