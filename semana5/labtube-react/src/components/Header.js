@@ -1,17 +1,13 @@
 import { React, Component } from 'react'
 
-class Header extends Component {
-  constructor({title}) {
-    super(title)
-    this.title = title
-  }
+const Header = ({title}) => {
   
-  render() { return (
+  return (
     <header>
-      <h1>{this.title}</h1>
+      <h1>{title}</h1>
       <input type="text" placeholder="Busca" id="campoDeBusca" />
     </header>
-  )}
+  )
 }
 
 export default Header

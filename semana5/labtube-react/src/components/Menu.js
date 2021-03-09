@@ -1,25 +1,13 @@
-import { Component } from 'react'
+const Menu = ({items}) => {
 
-class Menu extends Component {
-  constructor({items}) {
-    super(items)
-    this.menuItems = this.buildMenu(items)
-  }
-  buildMenu(menuList) {
-    const menu = menuList.map(
-      item => `<li class="botoes-menu-vertical">${item}</li>`
-    )
-    
-    return menu
-  }
+  let menu = items.map(i => <li className="botoes-menu-vertical">{i}</li>)
   
-  render() { return (
-    <nav class="menu-vertical">
+  return (
+  <nav className="menu-vertical">
     <ul>
-      {this.menuItems}
+      {menu}
     </ul>
-    </nav>
-  )}
-}
+  </nav>
+)}
 
 export default Menu

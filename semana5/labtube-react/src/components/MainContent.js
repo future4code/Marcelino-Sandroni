@@ -1,49 +1,40 @@
-import { Component } from 'react'
+import { React, useState, useEffect } from 'react'
+import Video from './Video'
+import getYoutubeVideo from './Youtube'
+import styled from 'styled-components'
 
-class MainContent extends Component {
-  constructor({videoTitle}) {
-    super(videoTitle)
-    this.title = videoTitle
-  }
+
+const MainContent = ({videoAmount}) => {
+  const [video = [{title: ''}], setVideo] = useState([])
   
-  reproduzVideo = video => alert("O vídeo está sendo reproduzido")
+  useEffect( async () => {
+      const list = await getYoutubeVideo('video memes', 5)
+      setVideo(list)
+  }, [])
 
-  render() { return (
-      <section class="painel-de-videos">
-        <div class="box-pagina-principal media1"   onClick="this.reproduzVideo">
-          <img src="https://picsum.photos/400/400?a=1 " alt="" />
-          <h4>{this.title}</h4>
-        </div>
-        <div class="box-pagina-principal media2"   onClick="this.reproduzVideo">
-          <img src="https://picsum.photos/400/400?a=2 " alt="" />
-          <h4>{this.title}</h4>
-        </div>
-        <div class="box-pagina-principal media3"   onClick="this.reproduzVideo">
-          <img src="https://picsum.photos/400/400?a=3 " alt="" />
-          <h4>{this.title}</h4>
-        </div>
-        <div class="box-pagina-principal media4"   onClick="this.reproduzVideo">
-          <img src="https://picsum.photos/400/400?a=4 " alt="" />
-          <h4>{this.title}</h4>
-        </div>
-        <div class="box-pagina-principal media5"   onClick="this.reproduzVideo">
-          <img src="https://picsum.photos/400/400?a=5 " alt="" />
-          <h4>{this.title}</h4>
-        </div>
-        <div class="box-pagina-principal media6"   onClick="this.reproduzVideo">
-          <img src="https://picsum.photos/400/400?a=6 " alt="" />
-          <h4>{this.title}</h4>
-        </div>
-        <div class="box-pagina-principal media7"   onClick="this.reproduzVideo">
-          <img src="https://picsum.photos/400/400?a=7 " alt="" />
-          <h4>{this.title}</h4>
-        </div>
-        <div class="box-pagina-principal media8"   onClick="this.reproduzVideo">
-          <img src="https://picsum.photos/400/400?a=8 " alt="" />
-          <h4>{this.title}</h4>
-        </div>
-      </section>
-  )}
+  const playVideo = e => {
+    
+  }
+
+  const Section = styled.section`
+    display: 'flex';
+    flex-flow: 'row wrap';
+    justify-content: 'space-evenly';
+    align-items: 'center';
+    justify-items: 'flex-start';
+    font-size: '2rem';
+    text-align: 'center';
+  `
+
+  return <Section>
+      {video.map((item, index) => (
+        <Video title={item.title}
+        image={item.image}
+        link={item.link}
+        onMouseOver={playVideo}
+        key={index}/>
+      ))}
+    </Section>
 }
 
 export default MainContent

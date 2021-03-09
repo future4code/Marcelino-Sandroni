@@ -1,29 +1,31 @@
 import { Component } from 'react'
-import './App.css';
 
 import Header from './components/Header'
 import Menu from './components/Menu'
 import MainContent from './components/MainContent'
 import Footer from './components/Footer'
 
-class App extends Component {
+//styles
+//import './App.css'
 
-  siteTitle = 'Labtube'
-  menuItems = ['Inínio', 'Em alta', 'Inscrições', 'Origianais', 'Histórico']
-  videoTitle = 'Título do Video'
-  footerMessage = 'Oi eu moro no footer'
+function App() {
 
-  render() { return (
-    <div className="tela-inteira">
-      <Header title={this.siteTitle}/>
+  const siteTitle = 'Labtube'
+  const menuItems = ['Inínio', 'Em alta', 'Inscrições', 'Origianais', 'Histórico']
+  const videoTitle = 'Título do Video'
+  const footerMessage = 'Oi eu moro no footer'
+
+  return (
+    <div className="container">
+      <Header title={siteTitle}/>
       <main>
-        <Menu items={this.menuItems}/>
-        <MainContent videoTitle={this.videoTitle}/>
+        <Menu items={menuItems}/>
+        <MainContent videoTitle={videoTitle}/>
       </main>
-      <Footer text={this.footerMessage}/>
+      <Footer text={footerMessage}/>
 
     </div>
-  )}
+  )
 }
 
 export default App;
