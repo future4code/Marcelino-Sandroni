@@ -22,7 +22,9 @@ const getYoutubeVideo = async (query = 'random', amount = 1) => {
 
     return video
   } catch(e) {
+    alert('acabou minha quota do youtube, vou por imagens msm')
     console.log(e)
+
   }
 }
 
