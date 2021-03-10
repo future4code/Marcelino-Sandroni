@@ -143,13 +143,12 @@ function filtrarDespesas(){
     if(valorMin < valorMax ||
       valorMin && !valorMax ||
       valorMax && !valorMin) {
+
         valorMax = valorMax || Infinity
-        console.log({valorMax})
+
         filtered = filterValues(filtered, valorMin, valorMax)
     }
     
-    console.log({order})
-    console.log({filtered})
     
     filtered = sortValues(filtered, order)
 
