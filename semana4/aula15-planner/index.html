@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="index.js"></script>
+    <title>Planner</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <form class="form-container" action="">
+                <div class="task-inputs">
+                    <label for="tarefa">Nova tarefa:</label>
+                    <input type="text" id="tarefa">
+                    <select name="dias-semana" id="dias-semana">
+                        <option value="0">Domingo</option>
+                        <option value="1">Segunda</option>
+                        <option value="2">Terça</option>
+                        <option value="3">Quarta</option>
+                        <option value="4">Quinta</option>
+                        <option value="5">Sexta</option>
+                        <option value="6">Sábado</option>
+                    </select>
+                    <label>Horas:</label>
+                    <input type="number" name="time" id="time" value="8" 
+                    step=1 min=0 max=23>
+                    <button id="adicionar">Criar tarefa</button>
+                    <button id="limpar">Limpar</button>
+                </div>
+
+            </form>
+
+
+        </header>
+        <section class="week-board">
+            <div class="semana">
+                <h3>Domingo</h3>
+                <div id="domingo"></div>
+            </div>
+
+            <div class="semana">
+                <h3>Segunda</h3>
+                <div id="segunda"></div>
+            </div>
+
+            <div class="semana">
+                <h3>Terça</h3>
+                <div id="terca"></div>
+            </div>
+
+            <div class="semana">
+                <h3>Quarta</h3>
+                <div id="quarta"></div>
+            </div>
+
+            <div class="semana">
+                <h3>Quinta</h3>
+                <div id="quinta"></div>
+            </div>
+
+            <div class="semana">                    
+                <h3>Sexta</h3>               
+                <div id="sexta"></div>
+            </div>
+
+            <div class="semana">
+                <h3>Sábado</h3>
+                <div id="sabado"></div>
+            </div>
+        </section>
+    </div>
+    
+</body>
+</html>
