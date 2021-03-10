@@ -1,51 +1,94 @@
-import React from 'react';
+//imr to import reat
+import React from "react";
+
 //import './App.css';
-import CardGrande from './components/CardGrande';
-import CardPequeno from './components/CardPequeno'
-import ImagemButton from './components/ImagemButton';
-import Container from '@material-ui/core/Container'
+import CardGrande from "./components/CardGrande";
+import CardPequeno from "./components/CardPequeno";
+
+//Styles
+import "@fontsource/roboto";
+import styled from "styled-components";
+import { ButtonAdd, ButtonFace, ButtonTwitter } from "./components/Buttons";
+import { Header } from "./components/Header";
+//Material UI
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Grid, Box, Avatar, AppBar, Button } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import red from "@material-ui/core/colors/red";
+
+const theme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: red,
+  },
+});
+
+const Container = styled(Grid)`
+  min-height: ${(props) => props.h || "300px"};
+`;
+
+const Item = styled(Grid)`
+  margin: 20px auto;
+`;
 
 function App() {
   return (
-    <Container>    
-        <h2>Dados pessoais</h2>
-        <CardGrande 
-          imagem="https://uploads-ssl.webflow.com/5d640f4558306be99cf47a0e/5dd57846babb597b77c6bb1d_PerfilFuture4_cor.png" 
-          nome="Astrodev" 
-          descricao="Oi, eu sou o Astrodev. Sou o chefe dos alunos da Labenu. Adoro pedir e-mails na sexta-feira e esperar os alunos responderem só para responder com uma bronca e dar mais trabalho para eles."
-        />
-    
-    <CardPequeno />
-    <CardPequeno />
-        
-        <ImagemButton 
-          imagem="https://image.flaticon.com/icons/png/512/117/117472.png" 
-          texto="Ver mais"
-        />
-        <h2>Experiências profissionais</h2>
-        <CardGrande 
-          imagem="https://s3.amazonaws.com/future4.com.br/static/headf4-c492117ca2373dc85ca81bf715b3dc2a.png" 
-          nome="Labenu" 
-          descricao="Formando desenvolvedores para o mercado de trabalho!" 
-        />
-        
-        <CardGrande 
-          imagem="https://imagens.canaltech.com.br/empresas/4418.400.jpg" 
-          nome="NASA" 
-          descricao="Apontando defeitos." 
-        />
-        <h2>Minhas redes sociais</h2>
-        <ImagemButton 
-          imagem="https://d2v9ipibika81v.cloudfront.net/uploads/sites/261/2017/01/facebook-logo-3.png" 
-          texto="Facebook" 
-        />        
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="md">
+        <Grid container xs={10} justify="center" direction="column" spacing={5}>
+          <Item container item xs={1} spacing={1} wrap="nowrap">
+            <Header />
+          </Item>
+          <Box mt={8} />
+          <Grid
+            container
+            item
+            xs
+            spacing={1}
+            direction="column"
+            justify="space-around"
+            alignItems="center"
+            alignContent="center"
+            wrap="nowrap"
+          >
+            <Typography variant="h4" component="h1">
+              Curriculum
+            </Typography>
+            <Button variant="primary" />
+            <Avatar alt="me" src="images/me.jpeg" />
+            <CardGrande
+              name="Marcelino Sandroni"
+              description="Hi, I'm Marcelino, a full stack web development studying."
+            />
+            <CardPequeno
+              mail="marcelino.sandroni@gmail.com"
+              adress="Wonderful Street, 123, Good Townhall, San Pablo, Brazil"
+            />
+            <CardPequeno />
 
-        <ImagemButton 
-          imagem="https://logodownload.org/wp-content/uploads/2014/09/twitter-logo-1-1.png" 
-          texto="Twitter" 
-        />        
+            <ButtonAdd />
+            <Typography variant="h4">Work Experience</Typography>
 
-    </Container>
+            <CardGrande
+              //image="https://s3.amazonaws.com/future4.com.br/static/headf4-c492117ca2373dc85ca81bf715b3dc2a.png"
+              name="Labenu"
+              description="Learning all languages needed to work in the market."
+            />
+
+            <CardGrande
+              //imagem="https://imagens.canaltech.com.br/empresas/4418.400.jpg"
+              name="NASA"
+              description="Bootcamp on mars with my friend Marcians"
+            />
+
+            <Typography variant="h4">My Social Network</Typography>
+
+            <ButtonFace />
+            <ButtonTwitter />
+          </Grid>
+        </Grid>
+      </Container>
+    </ThemeProvider>
   );
 }
 
