@@ -1,9 +1,25 @@
-import React from 'react'
-import './IconeComContador.css'
+import React from "react";
+import "./IconeComContador.css";
 
 export function IconeComContador(props) {
-	return <div className={'icon-container'}>
-		<img alt={'Icone'} src={props.icone} onClick={props.onClickIcone}/>
-		<p>{props.valorContador}</p>
-	</div>
+  let icon;
+
+  if (typeof props.icone === "string") {
+    //icone eh uma url
+    icon = <img alt="Icone" src={props.icone} onClick={props.onClickIcone} />;
+  } else {
+    //icone eh um elemento
+    icon = (
+      <span onClick={props.onClickIcone}>
+        <props.icone />
+      </span>
+    );
+  }
+
+  return (
+    <div className={"icon-container"}>
+      {icon}
+      <p>{props.valorContador}</p>
+    </div>
+  );
 }
