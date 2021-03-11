@@ -3,6 +3,7 @@ import "@fontsource/roboto";
 import "./App.css";
 import Post from "./components/Post/Post";
 import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 
 class App extends React.Component {
   state = {
@@ -48,6 +49,7 @@ class App extends React.Component {
         fotoPost={item.fotoPost}
       />
     ));
+
     return (
       <div className={"app-container"}>
         <div>
