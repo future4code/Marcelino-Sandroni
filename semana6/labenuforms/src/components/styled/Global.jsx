@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { defaultTheme } from './ThemeConfig'
+import { defaultTheme as theme } from './ThemeConfig'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -8,10 +8,11 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     list-style: none;
     background-color: #333;
+    color: ${theme.textColor};
   }
 
   body {
-    color: white;
+    height: 100vh;
   }
 `
 
