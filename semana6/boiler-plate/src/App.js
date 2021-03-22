@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import TextField from '@material-ui/core/TextField'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 
 const TarefaList = styled.ul`
   padding: 0;
@@ -22,6 +24,7 @@ const TaskInput = styled(TextField)`
 `
 
 class App extends React.Component {
+
     state = {
       tarefas: [],
       campoAdicionar: '',
@@ -29,8 +32,8 @@ class App extends React.Component {
     }
 
   componentDidUpdate() {
-
-  };
+    this.salvarTarefa(this.state.tarefas)
+  }
 
   componentDidMount() {
     const tarefasSalvas = JSON.parse(localStorage.getItem('tarefas'))
@@ -48,9 +51,7 @@ class App extends React.Component {
       this.setState({
         tarefas: [...this.state.tarefas, novaTarefa],
         campoAdicionar: ''
-      },
-        () => this.salvarTarefa(this.state.tarefas)
-      )
+      })
     }
   }
   
@@ -59,13 +60,9 @@ class App extends React.Component {
 
   selectTarefa = (id) => {
     const novaLista = [...this.state.tarefas]
-    novaLista.forEach(item => 
-      item.completa = item.id === id ? !item.completa : item.completa)
+    novaLista.forEach(item => item.completa = item.id === id && !item.completa)
     
-    console.log(novaLista)
-    
-    this.setState({ tarefas: novaLista },
-      () => this.salvarTarefa(this.state.tarefas))
+    this.setState({ tarefas: novaLista })
   }
   
   deletarTarefa = id => {
@@ -94,14 +91,15 @@ class App extends React.Component {
     })
 
     return (
-      <div className="App">
+      <Container>
+      <Grid />
         <h1>Lista de tarefas</h1>
-        <TaskInput>
-          <input name='campoAdicionar'
+        <TaskInput
+          name='campoAdicionar'
           value={this.state.campoAdicionar}
           onChange={this.handleChanges}
           onKeyDown={this.criaTarefa}
-          />
+          >
           <button onClick={this.criaTarefa} >
             Adicionar
           </button>
@@ -134,7 +132,7 @@ class App extends React.Component {
             )
           })}
         </TarefaList>
-      </div>
+      </Container>
     )
   }
 }
