@@ -7,7 +7,7 @@ import { PrimaryButton, SecondaryButton } from 'styles/Buttons'
 import { useInput } from 'utils/useInput'
 
 export const AddUsers = ({list}) => {
-  const [input, setInput, controlInput] = useInput()
+  const [input, setInput, controlInput] = useInput({name: '', email: ''})
 
   const registerUser = e => api.createUser({...input}).then(r =>
     alert(`cadastrado!`))
