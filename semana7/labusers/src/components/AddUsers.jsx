@@ -15,8 +15,10 @@ export const AddUsers = ({list}) => {
   return <Wraper>
       <Title>Cadastra ai parcero</Title>
       <InputContainer>
-        <InputName name='name' label='Nome' onChange={controlInput} />
-        <InputMail name='email' label='Email' onChange={controlInput} />
+        <InputName name='name' label='Nome'
+        value={input.name} onChange={controlInput} />
+        <InputMail name='email' label='Email'
+        value={input.email} onChange={controlInput} />
         <SecondaryButton onClick={registerUser} >
           Cadastrar
         </SecondaryButton>

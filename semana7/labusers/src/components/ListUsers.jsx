@@ -34,11 +34,11 @@ export const ListUsers = ({users, add}) => {
   const maxItemsPerPage = window.screen.width > 500 ? 7 : 4
   let filteredList = []
   
-  console.warn(8 * 0)
-  
-  if (userList.length > 8) {
+  if (userList.length > maxItemsPerPage) {
     filteredList = userList.filter((user, index) =>
     (index <= maxItemsPerPage * page) && (index >= maxItemsPerPage * (page - 1)))
+  } else {
+    filteredList = userList
   }
   
   console.log(filteredList)
@@ -72,7 +72,7 @@ export const ListUsers = ({users, add}) => {
         <SecondListContainer>
           {listItems}
         </SecondListContainer>
-      <Pagination count={userList.length / 8} shape='rounded' 
+      <Pagination count={userList.length / maxItemsPerPage} shape='rounded' 
         onChange={(e, value) => setPage(value)}
       />
       </ListContainer>

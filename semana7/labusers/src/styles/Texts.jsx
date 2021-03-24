@@ -8,8 +8,8 @@ export const Title = styled(Typography).attrs({
   margin: 50px auto;
 
   @media(max-width: 500px) {
-    font-size: 2.2rem;
-    margin: 20px auto;
+    font-size: 2rem;
+    margin: 0 auto;
     margin-top: 50px;
   }
 `

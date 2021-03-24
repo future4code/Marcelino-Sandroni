@@ -29,7 +29,7 @@ export const Wraper = styled.div`
 
 export const InputContainer = styled.div`
   width: 50%;
-  min-height: 60vh;
+  height: 60vh;
   min-width: 350px;
   max-width: 1280px;
   display: flex;
