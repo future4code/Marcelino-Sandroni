@@ -8,13 +8,6 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark'
   },
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '@background-color': 'tomato'
-      }
-    }
-  }
 })
 
 export const MainContainer = ({children: content}) => {
@@ -25,9 +18,16 @@ export const MainContainer = ({children: content}) => {
   </ThemeProvider>
 }
 
+export const Wraper = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin: 0 auto;
+`
+
 export const InputContainer = styled.div`
   width: 50%;
-  min-height: 50vh;
+  min-height: 60vh;
   min-width: 350px;
   max-width: 1280px;
   display: flex;
@@ -37,4 +37,16 @@ export const InputContainer = styled.div`
   margin: 50px auto;
 
   border: 1px solid gold;
+`
+
+export const ListContainer = styled(InputContainer)`
+  display: flex;
+  //flex-flow: row wrap;
+  //justify-content: space-around;
+`
+
+export const EditContainer = styled(InputContainer)`
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
 `

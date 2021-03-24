@@ -1,43 +1,39 @@
 import axios from 'axios'
 
-const baseUrl = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
-const auth = 'marcelino-sandroni-cruz'
-const header = {
-  Authorization: auth
-}
+const baseURL = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
+axios.defaults.baseURL = baseURL
 axios.defaults.headers.common['Authorization'] = 'marcelino-sandroni-cruz'
 
-// tentar usar currying
-const base = ({method = 'get', params = '', body = ''}) => {
-  const url = !params ? baseUrl : baseUrl + params
-  
-  console.log(url)
-  console.log(`body: ${body}`)
-
+// Base para usar paradigma funcional com CURRYING!
+const base = ({method = 'get', url = '', params = '', data = ''}) => {
   return async () => {
     try {
-      const r = await axios({method, url})
-      console.log(r.data)
-      return r.data
+      const r = await axios({method, url, params, data})
+      if (r.status >= 200 && r.status < 204) {
+        return r.data
+      } else {
+        console.warn(`${r.status} - ${r.statusText}`)
+      }
     } catch(e) {
       console.error(e)
+      alert(`Erro brabu!\n${e.status} - ${e.statusText}`)
     }
   }
-  
-}
-const getAll = base()
-
-const getById = id => base({params: `/${id}`})
-
-const getByNameEmail = (name, email) => {
-  if (!name && !email) return
-
-  let param = `search?`
-  param += name && !email ? `name=${name}` : `email=${email}`
-
-  return base({body: {name, email}})
 }
 
-const createUser = (name, email) => base({body: {name, email}})
+const getAll = base({})
 
-export {getAll, getById, getByNameEmail, createUser}
+const getById = id => base({url: id})()
+
+const getByNameEmail = ({name, email}) => 
+  base({url: 'search', params: {name, email}})()
+
+const createUser = ({name, email}) => 
+  base({method: 'post', params: '', data: {name, email}})()
+
+const editUser = ({id, name, email}) =>
+  base({method: 'put', url: id, data: {name, email}})()
+
+const deleteUser = id => base({method: 'delete', url: id})()
+
+export { getAll, getById, getByNameEmail, createUser, editUser, deleteUser }
