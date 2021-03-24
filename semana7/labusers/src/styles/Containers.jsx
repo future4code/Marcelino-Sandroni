@@ -23,6 +23,8 @@ export const Wraper = styled.div`
   flex-flow: column;
   justify-content: center;
   margin: 0 auto;
+  max-height: 100vh;
+  position: relative;
 `
 
 export const InputContainer = styled.div`
@@ -43,10 +45,31 @@ export const ListContainer = styled(InputContainer)`
   display: flex;
   //flex-flow: row wrap;
   //justify-content: space-around;
+  overflow: hidden;
+`
+
+export const SecondListContainer = styled(ListContainer)`
+  flex-flow: column nowrap;
+  border: none;
+  width: 100%;
+  height: 80%;
+  margin: 0;
+  padding: 0;
 `
 
 export const EditContainer = styled(InputContainer)`
-  background-color: rgba(0,0,0,0.5);
+  //background-color: rgba(0,0,0,0.5);
+  background-color: #333;
   width: 100%;
   height: 100%;
+  position: absolute;
+  z-index: 2;
+  border: none;
+
+  @media(max-width: 500px) {
+    div {
+      width: 80%;
+      min-width: 330px;
+    }
+  }
 `

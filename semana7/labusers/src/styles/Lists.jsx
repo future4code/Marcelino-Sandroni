@@ -7,6 +7,7 @@ export const ListItem = styled.li`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
+  align-items: center;
   padding: 0.5rem 2rem;
 
   strong {
