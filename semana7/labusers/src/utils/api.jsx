@@ -9,14 +9,17 @@ const base = ({method = 'get', url = '', params = '', data = ''}) => {
   return async () => {
     try {
       const r = await axios({method, url, params, data})
-      if (r.status >= 200 && r.status < 204) {
+      if (r.status >= 200 && r.status <= 204) {
+        console.log(`retornando data`)
         return r.data
       } else {
-        console.warn(`${r.status} - ${r.statusText}`)
+        console.log(`ve o sinal`)
+        return r
       }
     } catch(e) {
+      console.error('catcha')
       console.error(e)
-      alert(`Erro brabu!\n${e.status} - ${e.statusText}`)
+      return e.response
     }
   }
 }
