@@ -6,11 +6,28 @@ export const CreatePlaylists = (props) => {
 
   
   const atualizarInput = e => setInputCriar(e.target.value)
-  
   const criar = () => inputCriar && api.newPlaylist(inputCriar)
+  
+  const lista
+  
+  const listaFiltrada = lista.filter()
+  listaFiltrada = listaFiltrada.filter()
+  
+  class listinhaFiltrada {
+    constructor(list){
+      this.todos = list
+      this.filtrados = list
+      this.filtrar = callback => this.filtrados.filter(callback)
+    }
+  }
+  
+  const listaFiltrada = new listinhaFiltrada(list)
+  
+  listaFiltrada.filtrar(i => i.valor > 10)
+  
+  
 
   return (
-
     <div>
       <h1>Criar playlist</h1>
       <input
