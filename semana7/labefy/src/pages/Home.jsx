@@ -1,30 +1,24 @@
-import React from 'react'
-import * as api from 'utils/api'
-import ListPlaylists from 'components/ListPlaylists'
-import CreatePlaylists from 'components/CreatePlaylists'
+import { useState, useEffect } from 'react'
+import { MainContainer } from 'containers/main-container'
+import { ListPlaylists } from 'components/ListPlaylists'
+import { CreatePlaylists } from 'components/CreatePlaylists'
 
-class Home extends React.Component {
-  state = {
-    playlists: []
+const Home = () => {
+  const [page, setPage] = useState()
+  
+  const back = (value) => {
+    setPage(value)
   }
+  
+  const currentPage = !page ? ListPlaylists : CreatePlaylists
 
-  componentDidMount() {
-    api.pegarTodasPlaylists().then(r => {
-        console.log(r)
-        this.setState({ playlists: r.result.list }, console.log(this.playlists))
-    })
-  }
-
-  render () {
-
-    return (
-      <div>
-        <h1>Hi</h1>
-          <ListPlaylists playlist={this.state.playlists} />
-          <CreatePlaylist />
-      </div>
-    );
-  }
+  return (
+    <MainContainer>
+      <h1></h1>
+      <currentPage back={back} />
+        
+    </MainContainer>
+  );
 }
 
 export default Home;

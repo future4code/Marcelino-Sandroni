@@ -4,22 +4,37 @@ const baseUrl = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playl
 axios.defaults.baseURL = baseUrl
 axios.defaults.headers.common['Authorization'] = 'marcelino-sandroni-cruz'
 
+const verifyStatus = r => {
+  if (r.status >= 200 && r.status <= 201) {
+    return r
+  } else {
+    console.warn(`Algo de certo deu errado: ${r.status} - ${r.statusText}`)
+    return -1
+  }
+}
 
-export const pegarTodasPlaylists = async () => {
+export const getPlaylists = async () => {
   try {
-    const resultado = await axios.get()
-    if (resultado.status >= 200 && resultado.status <= 201) {
-      return resultado.data
-    } else {
-      console.warn(`Algo de certo deu errado: ${resultado.status} - ${resultado.statusText}`)
-    }
+    const r = await axios.get()
+    return verifyStatus(r)
   } catch(e) {
     console.error(e)
   }
 }
 
-export const procurarPlaylists = () => {
+export const searchPlaylist = async name => {
 
+}
+
+export const newPlaylist = async name => {
+  try {
+    const r = await axios.post({name})
+    return verifyStatus(r)
+  } catch(e) {
+    console.error(e)
+  }
+
+  
 }
 
 export const a = 'a'
