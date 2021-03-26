@@ -1,23 +1,26 @@
 import { useState, useEffect } from 'react'
 import * as api from 'utils/api'
+import { Title } from 'styles/texts'
 
 export const CreatePlaylists = (props) => {
   const [inputCriar, setInputCriar] = useState('')
-
+  
+  const [input, setInput] = useState({})
+  
+  const controlInput = e => {
+    const {value, name} = e.target
+    setInput({ [name]: value })
+  }
+  
   
   const atualizarInput = e => setInputCriar(e.target.value)
   const criar = () => inputCriar && api.newPlaylist(inputCriar)
-  
-  const lista
-  
-  const listaFiltrada = lista.filter()
-  listaFiltrada = listaFiltrada.filter()
 
   return (
     <div>
       <h1>Criar playlist</h1>
       <input
-        name='inputCriar'
+        name='criar'
         value={inputCriar}
         onChange={atualizarInput} 
       />

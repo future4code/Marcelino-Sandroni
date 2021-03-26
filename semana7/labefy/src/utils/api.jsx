@@ -12,10 +12,11 @@ const verifyStatus = r => {
     return -1
   }
 }
+getPlaylists({url: 'users', params: {name: 'marcelino'}})
 
-export const getPlaylists = async () => {
+export const getPlaylists = async (url, params) => {
   try {
-    const r = await axios.get()
+    const r = await axios.get({url, params})
     return verifyStatus(r)
   } catch(e) {
     console.error(e)
@@ -23,7 +24,12 @@ export const getPlaylists = async () => {
 }
 
 export const searchPlaylist = async name => {
-
+  try {
+    const r = await axios.get({params: {name}})
+    return verifyStatus(r)
+  } catch(e) {
+    console.error(e)
+  }
 }
 
 export const newPlaylist = async name => {
@@ -33,9 +39,11 @@ export const newPlaylist = async name => {
   } catch(e) {
     console.error(e)
   }
-
-  
 }
 
-export const a = 'a'
-export const b = 'b'
+//id + tracks
+export const getTracks = async id => {
+  try {
+    const r = await axios.get({})
+  }
+}
