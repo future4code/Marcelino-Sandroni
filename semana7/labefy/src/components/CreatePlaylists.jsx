@@ -12,20 +12,6 @@ export const CreatePlaylists = (props) => {
   
   const listaFiltrada = lista.filter()
   listaFiltrada = listaFiltrada.filter()
-  
-  class listinhaFiltrada {
-    constructor(list){
-      this.todos = list
-      this.filtrados = list
-      this.filtrar = callback => this.filtrados.filter(callback)
-    }
-  }
-  
-  const listaFiltrada = new listinhaFiltrada(list)
-  
-  listaFiltrada.filtrar(i => i.valor > 10)
-  
-  
 
   return (
     <div>
