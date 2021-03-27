@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
-import * as api from 'utils/api'
+import * as labefy from 'utils/apis/labefy'
+import styled from 'styled-components'
 import { Title } from 'styles/texts'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
 
 export const CreatePlaylists = (props) => {
   const [inputCriar, setInputCriar] = useState('')
@@ -14,18 +18,33 @@ export const CreatePlaylists = (props) => {
   
   
   const atualizarInput = e => setInputCriar(e.target.value)
-  const criar = () => inputCriar && api.newPlaylist(inputCriar)
+  const criar = () => {
+
+    console.log(inputCriar)
+    inputCriar && labefy.createPlaylist(inputCriar)
+  }
 
   return (
-    <div>
-      <h1>Criar playlist</h1>
-      <input
+    <AddContainer>
+      <Typography align='center' variant='h3'>Criar playlist</Typography>
+      <TextField
+        variant='filled'
+        label='Nova Play'
         name='criar'
         value={inputCriar}
         onChange={atualizarInput} 
       />
-      <button onChange={criar} >Criar</button>
-      <button onClick={() => props.back(false)}>Volta</button>
-    </div>
+      <Button variant='contained' color='secondary' onClick={criar} >Criar</Button>
+      <Button variant='contained' color='secondary' onClick={() => props.back(false)}>Volta</Button>
+    </AddContainer>
   )
 }
+
+const AddContainer = styled.div`
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: schretch;
+`
