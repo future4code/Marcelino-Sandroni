@@ -9,6 +9,10 @@ import { AddCircle, DeleteForever, Add} from '@material-ui/icons';
 import CircularProgress from '@material-ui/core/CircularProgress'
 import ReactPlayer from 'react-player/youtube'
 import Grid from '@material-ui/core/Grid'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Notification } from 'components/form-actions/notification'
+
 import { makeStyles } from '@material-ui/core/styles'
 
 import axios from 'axios'
@@ -33,6 +37,7 @@ const inputDefaults = {
   artist: '',
   url: '',
   auto: false,
+  autoText: 'De boa, eu pego no youtue pra tu...'
 }
 
 const useStyles = makeStyles({
@@ -70,8 +75,21 @@ export const OpenPlaylist = React.memo((props) => {
   
   const {playlist, setPlaylist, play} = useContext(PlaylistContext)
   const [redirect, setRedirect] = useState()
+  const [alert, setAlert] = useState(false)
+  const [msg, setMsg] = useState('')
   
   const classes = useStyles()
+  
+  useEffect(() => {
+    console.log(`AUTO: ${input.auto}`)
+    // if (input.auto) {
+    //   setInput({...input, [urlField]: 'De boa eu pego pra tu no youtube'})
+    // } else {
+    //   setInput({...input, [urlField]: ''})
+      
+    // }
+
+  }, [input.auto])
   
   useEffect(() => {
     if (reload) {
@@ -159,6 +177,15 @@ export const OpenPlaylist = React.memo((props) => {
     //   console.log(r)
     //   const {url} = r.data.results[0].video
     //   setInput({...input, url})
+    
+    if (!input.name && !input.artist) {
+      setAlert(true)
+      setMsg('favor insira NOME e ARISTA!')
+      return
+    }
+    
+    if (input.auto) {
+
 
     youtube.getVideo(`${input.artist} ${input.name}`)
     .then(r => {
@@ -170,13 +197,26 @@ export const OpenPlaylist = React.memo((props) => {
       
       labefy.addTrackPlaylist(playlist.id, {...input, url})
       .then(r => {
+        console.log(r)
         console.table(input)
         if (r?.status === 200) {
           plsReload(true)
-          setInput(inputDefaults)
+          setInput({ ...inputDefaults, auto: input.auto})
         }
       })
     })
+
+    } else {
+      labefy.addTrackPlaylist(playlist.id, {...input})
+      .then(r => {
+        console.table(input)
+        if (r?.status === 200) {
+          plsReload(true)
+          setInput({ ...inputDefaults, auto: input.auto})
+        }
+      })
+      
+    }
 
   })
   
@@ -203,6 +243,7 @@ export const OpenPlaylist = React.memo((props) => {
   return (
     <Grid item container xs={12} direction='row' className={classes.container}>
       {redirect && <Redirect to='/404' />}
+      {alert && <Notification {...{alert, setAlert, msg}} />}
 
       <Grid item xs={12}>
         {loading && <CircularProgress />}
@@ -272,14 +313,25 @@ export const OpenPlaylist = React.memo((props) => {
         <Grid item container direction='row' xs={12} alignItems='flex-end'
         spacing={1}>
         <TextField 
+          disabled={input.auto ? true : false}
           name={urlField}
           id='url'
           // variant='filled' 
-          label='Link da Musica'
+          label={!input.auto ? 'Link da Musica' : 'De boa, eu pago no youtube pra tu...'}
           value={input[urlField]}
           onChange={inputControl}
           autoComplete='off'
           className={classes.grow}
+        />
+        
+        <FormControlLabel
+        control={<Checkbox
+            checked={input.auto}
+            onChange={() => {setInput({...input, auto: !input.auto})}}
+            name="auto"
+            color="secondary"
+        />} 
+            label='Link Automatico'
         />
         </Grid>
         
