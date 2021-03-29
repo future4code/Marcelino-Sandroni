@@ -1,7 +1,7 @@
 import axios from 'axios'
 import interceptor from './interceptor'
 
-const baseURL = 'http://youtube-scrape.herokuapp.com/api/search'
+const baseURL = 'http://localhost:8080/api/search'
 const scrape = axios.create({baseURL})
 
 interceptor(scrape, 'youtube')

@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import axios from 'axios'
 import {getVideo} from 'utils/apis/scrape'
+import * as youtube from 'utils/apis/youtube'
 
 
 
@@ -30,7 +31,8 @@ const urlField = `url${random}`
 const inputDefaults = {
   name: '',
   artist: '',
-  url: ''
+  url: '',
+  auto: false,
 }
 
 const useStyles = makeStyles({
@@ -119,10 +121,11 @@ export const OpenPlaylist = React.memo((props) => {
 
     if (playlist?.quantity && name && artist) {
       //pegar letrinhas
+      console.log(`${artist}/${name}`)
       axios.get(
         `https://api.lyrics.ovh/v1/${artist}/${name}`,
         {
-          timeout: 5000,
+          timeout: 20000,
           // cancelToken: cancel.token
         })
       .then(r => {
@@ -151,19 +154,38 @@ export const OpenPlaylist = React.memo((props) => {
   },[playlist])
   
   const addTrack = useCallback(() => {
-    labefy.addTrackPlaylist(playlist.id, {...input})
+    // getVideo(`${input.artist} ${input.name}`)
+    // .then(r => {
+    //   console.log(r)
+    //   const {url} = r.data.results[0].video
+    //   setInput({...input, url})
+
+    youtube.getVideo(`${input.artist} ${input.name}`)
     .then(r => {
-      if (r?.status === 200) {
-        plsReload(true)
-        setInput(inputDefaults)
-      }
+      const watch = 'https://www.youtube.com/watch?v='
+      console.log(r)
+      const url = watch + r.data.items[0].id.videoId
+      setInput({...input, url})
+      
+      
+      labefy.addTrackPlaylist(playlist.id, {...input, url})
+      .then(r => {
+        console.table(input)
+        if (r?.status === 200) {
+          plsReload(true)
+          setInput(inputDefaults)
+        }
+      })
     })
+
   })
   
   const removeTrack = useCallback(trackId => {
     labefy.removeTrack(playlist.id, trackId)
     .then(r => {
+      playlist.prev()
       plsReload(true)
+      playlist.start()
     })
   }, [])
   
@@ -200,7 +222,7 @@ export const OpenPlaylist = React.memo((props) => {
         {playlist && playlist.tracks.map(p => {
           return (
             <div key={p.id}>
-            <p>{`${p.name} - ${p.artist}`}<DeleteForever onClick={() => removeTrack(p.id)} /></p>
+            <p>{`${p.name} - ${p.artist} - ${p.url}`}<DeleteForever onClick={() => removeTrack(p.id)} /></p>
             </div>
         )})}
         </ul>
