@@ -58,7 +58,7 @@ export const BottomMenu = () => {
       <BottomNavigationAction
       label="Previous"
       value={'previous'}
-      onClick={playlist.next}
+      onClick={playlist.prev}
       icon={<SkipPreviousIcon/>} />
 
       <BottomNavigationAction

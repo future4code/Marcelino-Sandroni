@@ -38,8 +38,12 @@ export const PlaylistContextProvider = React.memo((props) => {
     setPlaylist({ ...playlist, currentTrack: next })
   }
   
+  const goToTrack = number => {
+    setPlaylist({...playlist, currentTrack: number})
+  }
+  
   const prev = () => {
-    let prev = playlist.currentTrack + 1
+    let prev = playlist.currentTrack - 1
     if (!playlist.currentTrack) {
       prev = playlist.quantity - 1
     }
@@ -52,7 +56,7 @@ export const PlaylistContextProvider = React.memo((props) => {
   
   return (
     <PlaylistContext.Provider value={{
-      playlist: {...playlist, play, start, stop, next, prev}, setPlaylist}
+      playlist: {...playlist, play, start, stop, next, prev, goToTrack}, setPlaylist}
       }>
       {props.children}
     </PlaylistContext.Provider>

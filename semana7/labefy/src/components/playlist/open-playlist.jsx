@@ -180,14 +180,22 @@ export const OpenPlaylist = React.memo((props) => {
 
   })
   
-  const removeTrack = useCallback(trackId => {
+  const removeTrack = trackId => {
     labefy.removeTrack(playlist.id, trackId)
     .then(r => {
       playlist.prev()
+      if (!playlist.currentTrack) {
+        console.log('primeira')
+        playlist.goToTrack(0)
+      } else{
+        console.log('anterior')
+        playlist.prev()
+        // playlist.start()
+      }
       plsReload(true)
-      playlist.start()
+      // setTimeout(() => plsReload(true), 1000)
     })
-  }, [])
+  }
   
   console.log(playlist)
   const cur = playlist.currentTrack
