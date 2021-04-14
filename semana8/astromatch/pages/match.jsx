@@ -5,7 +5,7 @@ import * as S from "../styles/match"
 export default function Match() {
   const [profile, setProfile] = useState({})
   const [matchList, setMatchList] = useState([])
-  const [enterAnimation, setEnterAnimation] = useState(false)
+  const [painting, setPainting] = useState(false)
   const [hideCircle, setHideCircle] = useState(false)
   const [alert, setAlert] = useState({ show: false, msg: "" })
   const enterAudio = useRef()
@@ -13,15 +13,8 @@ export default function Match() {
   const baseUrl =
     "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/marcelino/"
 
-  useEffect(async function () {
-    const r = await axios.get(`${baseUrl}person`)
-    setProfile({ ...r.data.profile })
-    getMatcheList()
-  }, [])
-
-  useEffect(() => {
-    enterAudio.current?.play()
-  }, [])
+  useEffect(() => nextProfile(), [])
+  useEffect(() => enterAudio.current?.play(), [])
 
   const nextProfile = async () => {
     const r = await axios.get(`${baseUrl}person`)
@@ -31,17 +24,17 @@ export default function Match() {
 
   const itsAMatch = async () => {
     const { id } = profile
-    const r = await axios.post(`${baseUrl}choose-person`, {
-      id: id,
-      choice: true,
-    })
+    const choice = true
+    const r = await axios.post(`${baseUrl}choose-person`, { id, choice })
     const msg = r.data.isMatch
       ? "Its a Match! Finally ty God!"
       : "Sorry, it's not you, it's me"
 
     setAlert({ show: true, msg })
-    await new Promise(r => setTimeout(() => r("ok"), 3000))
-    setAlert({ show: false, msg })
+    await new Promise(r =>
+      setTimeout(() => r("Ja passou o disco voador"), 3000)
+    )
+    setAlert(prevAlert => ({ ...prevAlert, show: false }))
     nextProfile()
   }
 
@@ -77,13 +70,11 @@ export default function Match() {
   return (
     <S.Container>
       <audio ref={enterAudio} src='/enterMatchPage.ogg' />
-      <S.Box onAnimationEnd={() => setEnterAnimation(true)}>
+      <S.Box onAnimationEnd={() => setPainting(true)}>
         {!hideCircle && (
           <S.CrazyCricle onAnimationEnd={() => setHideCircle(true)} />
         )}
-        {enterAnimation &&
-          Object.keys(profile).length &&
-          renderProfile(profile)}
+        {painting && Object.keys(profile).length && renderProfile(profile)}
         {alert.show && <S.Alert>{alert.msg}</S.Alert>}
       </S.Box>
     </S.Container>
