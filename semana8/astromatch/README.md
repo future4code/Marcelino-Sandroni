@@ -6,8 +6,9 @@ See it live!
 
 ## Pictures of a beutiful day...
 
-[!print1](/images/print1.png)
-[!print2](/images/print2.png)
+![print1](https://user-images.githubusercontent.com/7757352/114653295-1bdb2c80-9cbe-11eb-8d4c-778c0f1eabb9.png)
+![print2](https://user-images.githubusercontent.com/7757352/114653310-24cbfe00-9cbe-11eb-86c4-6b371a392c96.png)
+
 
 ## What is that?
 
