@@ -13,10 +13,6 @@ export default function Home() {
 
   useEffect(() => move && playSound(), [move])
 
-  const moveAndDisapear = () => {
-    setMove(true)
-  }
-
   const playSound = () => exitAudio.current?.play()
 
   const changePage = () => {
