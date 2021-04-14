@@ -1,0 +1,1 @@
+export * as bored from './bored'
