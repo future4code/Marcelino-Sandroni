@@ -1,0 +1,37 @@
+// populate
+
+POST https://us-central1-labenu-apis.cloudfunctions.net/labeX/marcelinosandroni/populate
+
+###
+// signup
+POST https://us-central1-labenu-apis.cloudfunctions.net/labeX/marcelinosandroni/signup
+content-type: application/json
+
+{
+  "email": "astrodev@gmail.com",
+  "password": "bananinha"
+}
+
+###
+// login
+POST https://us-central1-labenu-apis.cloudfunctions.net/labeX/marcelinosandroni/login
+content-type: application/json
+
+{
+  "email": "astrodev@gmail.com",
+  "password": "bananinha"
+}
+
+###
+
+// getTrips
+GET https://us-central1-labenu-apis.cloudfunctions.net/labeX/marcelinosandroni/trips
+
+###
+
+// getTripDetail
+GET https://us-central1-labenu-apis.cloudfunctions.net/labeX/marcelinosandroni/trip/DcG0tybkfuLsxzffWgxS
+auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InNlMDVoNTZxQVdERGFMeWxvWXVIIiwiZW1haWwiOiJhc3Ryb2RldkBnbWFpbC5jb20iLCJpYXQiOjE2MTkwNjU1MzB9.9CSydY7yDJF_ajAZ5LZQO5E9rGUpqWfYiB9ShOB5Rg4"
+
+// createTrip
+GET https://us-central1-labenu-apis.cloudfunctions.net/labeX/marcelinosandroni/trip/:id

@@ -1,0 +1,20 @@
+# shortcuts react
+imp = import default
+imd = import named
+ime = import alias
+exp = export default
+enf = exp def const arrow
+edf = exp def arrow
+fre = for each
+fof = for of
+fin = for in
+nfn = normal function
+edf = export arrow func
+dob = dest ob
+dar = dest ar
+sti/sto = time
+prom = promise
+clg = console.log
+
+
+rafce = react arrow comp
