@@ -41,7 +41,8 @@ export const MoonStagesImage = styled.img`
 
 export const MessageContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 3fr 1fr;
+  place-items: center;
 `
 
 export const LeftMessage = styled.p`

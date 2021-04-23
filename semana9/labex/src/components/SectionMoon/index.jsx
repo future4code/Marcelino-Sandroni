@@ -6,7 +6,7 @@ const SectionMoon = () => {
     <S.Container>
       <S.SectionContent>
         <S.Title>Life is a cycle</S.Title>
-        <S.Subtitle>The end is the begin</S.Subtitle>
+        <S.Subtitle>The end is the beginning</S.Subtitle>
         <S.MoonStagesImage />
         <S.MessageContainer>
           <S.LeftMessage>

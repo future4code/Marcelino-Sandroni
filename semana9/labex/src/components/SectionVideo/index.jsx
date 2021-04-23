@@ -11,6 +11,7 @@ const SectionVideo = () => {
         <S.VideoContainer>
           <ReactPlayer
             url='https://www.youtube.com/watch?v=GO5FwsblpT8'
+            loop
             width='100%'
             height='100%'
           />
