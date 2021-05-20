@@ -1,0 +1,13 @@
+http://localhost:3001/country
+
+###
+http://localhost:3001/country/1
+
+###
+
+http://localhost:3001/country/60
+content-type: application/json
+
+{
+  "name": "Marcelino"
+}

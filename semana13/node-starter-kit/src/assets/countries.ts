@@ -1192,4 +1192,4 @@ const countries: Countries = [
   },
 ]
 
-module.exports = countries
+export default countries
