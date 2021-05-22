@@ -1,26 +1,36 @@
-import fs from 'fs'
-import path from 'path'
-
 export enum UserRole {
   Admin = 'ADMIN',
   Normal = 'NORMAL'
 }
 
-export type User = {
+export interface User {
   id: number
   name: string
   type: UserRole
   age: number
 }
 
-export interface UsersModel {
-  users: User[]
+export enum DbStatus {
+  disconnected,
+  connected
 }
 
-export default class Users implements UsersModel {
+export interface UsersDatabase {
+  users: User[]
+  init: () => DbStatus
+  getAll: () => User[]
+  findById: (id: User['id']) => User | void
+  save: (user: User) => void
+}
+
+export class UsersModel implements UsersDatabase {
   users: User[]
 
   constructor() {
+    this.init()
+  }
+
+  init(): DbStatus {
     this.users = [
       {
         id: 1,
@@ -35,14 +45,22 @@ export default class Users implements UsersModel {
         age: 30
       }
     ]
+
+    if (!this.users) return DbStatus.disconnected
+
+    return DbStatus.connected
   }
 
-  // generateID() {
-  //   const id = 0
-  // }
-
-  saveToFile() {
+  save(): void {
     console.log(__dirname)
   }
-  getUsers = (): User[] => this.users
+
+  getAll = (): User[] => this.users
+
+  findById(id: User['id']): User | void {
+    const user = this.users.find((user) => user.id === id)
+    return user
+  }
 }
+
+const test: UsersDatabase = new UsersModel()

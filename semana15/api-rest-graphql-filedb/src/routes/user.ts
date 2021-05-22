@@ -1,10 +1,14 @@
 import {Router} from 'express'
+import {UsersModel} from 'src/models/users'
+import {ListUsersController} from '../controllers/user/list'
 
-const userRoute = Router()
-// const ListUsersController = new ListUsers()
+export const userRoute = Router()
+const listUsers = new ListUsersController(UsersModel)
 
 // local/users
-// userRoute.route('/').get(ListUsersController.handle).post(Controller.userCreate)
+userRoute.route('/').get(listUsers.handler)
+
+// .post(Controller.userCreate)
 
 // local/users/id
 // userRoute
@@ -16,5 +20,3 @@ const userRoute = Router()
 
 // local/users/search?name&type
 // userRoute.route('/search').get(Controller.userSearch)
-
-export default userRoute

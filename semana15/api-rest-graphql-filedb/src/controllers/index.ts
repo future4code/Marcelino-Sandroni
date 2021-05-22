@@ -4,7 +4,6 @@ import {RequestHandler} from 'express'
 export class IndexController extends BaseController {
   constructor() {
     super()
-    console.log('oi')
   }
 
   test: () => void = () => console.log('oi')

@@ -10,7 +10,7 @@ class User implements UserEntitie {
   public age: number
 
   constructor(props: UserEntitie) {
-    Object.assign(this, props)
+    Object.assign(this as UserEntitie, props)
   }
 }
 
