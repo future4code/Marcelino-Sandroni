@@ -1,10 +1,12 @@
-import express, {Express, NextFunction, Request, Response} from 'express'
+import express, {NextFunction, Request, Response} from 'express'
 
 type RequestBase<T> = (req: Request, res: Response, next: NextFunction) => T
 
 type RequestHandler = RequestBase<Promise<void>>
 
 type RequestContainer = RequestBase<void>
+
+type texto = (a: string) => void
 
 export default abstract class BaseController {
   protected readonly app
@@ -26,9 +28,9 @@ export default abstract class BaseController {
     }
   }
 
-  abstract requestHandler(Request, Response, Next): void
+  abstract requestHandler: RequestHandler
 
-  error(e: Error) {
+  error(e: Error): void {
     console.log({e})
   }
 }

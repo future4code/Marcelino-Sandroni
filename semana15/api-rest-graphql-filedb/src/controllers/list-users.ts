@@ -36,4 +36,5 @@ export default class UserController extends BaseController {
     const users = await this.database.getUsers()
     res.send({message: 'Users here', users})
   }
+  handleRequest = () => this.userList()
 }

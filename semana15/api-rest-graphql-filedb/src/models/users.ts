@@ -17,6 +17,15 @@ export interface UsersModel {
   users: User[]
 }
 
+/**
+ * read
+ * open if exist
+ * append to file if exist
+ * create if not exist
+ * save
+ * write
+ */
+
 export default class Users implements UsersModel {
   users: User[]
 
@@ -47,5 +56,5 @@ export default class Users implements UsersModel {
     }
     fs.writeFile('')
   }
-  getUsers = () => this.users
+  getUsers = (): User[] => this.users
 }

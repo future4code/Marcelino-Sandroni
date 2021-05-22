@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
 import Users from '../models/users'
-import BaseController from './BaseController'
+import BaseController from './base'
 
 export default class UserController extends BaseController {
   // CRUD?
