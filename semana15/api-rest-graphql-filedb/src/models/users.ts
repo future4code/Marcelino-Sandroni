@@ -17,15 +17,6 @@ export interface UsersModel {
   users: User[]
 }
 
-/**
- * read
- * open if exist
- * append to file if exist
- * create if not exist
- * save
- * write
- */
-
 export default class Users implements UsersModel {
   users: User[]
 
@@ -46,15 +37,12 @@ export default class Users implements UsersModel {
     ]
   }
 
-  generateID() {
-    const id = 0
-  }
+  // generateID() {
+  //   const id = 0
+  // }
 
   saveToFile() {
-    const db = {
-      path: path.resolve(__dirname, '../database/usersdb.json')
-    }
-    fs.writeFile('')
+    console.log(__dirname)
   }
   getUsers = (): User[] => this.users
 }

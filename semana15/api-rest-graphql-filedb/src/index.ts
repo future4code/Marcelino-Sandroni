@@ -4,6 +4,14 @@ import app from './server'
 import colors from 'colors'
 import config from './config'
 
+// SOLID
+// *
+// S => single responsability principle
+// O => open closed principle
+// L => liskov substitution principle (no fixed dependences)
+// I => interface agregation principle
+// D => dependence inversion principle (can work with any method)
+
 colors.enable()
 
 const message = (protocol: string, port: number) =>
@@ -20,4 +28,4 @@ const servers = [http.createServer(app), https.createServer(app)]
 servers.forEach((server, count) => server.listen(...setup(count)))
 
 console.log(`Server Name: ${config.name}`.blue)
-console.log(config.fileDB.path)
+console.log(`Path: ${config.fileDB.path}`.yellow)

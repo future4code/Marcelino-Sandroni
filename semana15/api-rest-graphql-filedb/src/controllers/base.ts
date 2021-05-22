@@ -1,36 +1,19 @@
-import express, {NextFunction, Request, Response} from 'express'
-
-type RequestBase<T> = (req: Request, res: Response, next: NextFunction) => T
-
-type RequestHandler = RequestBase<Promise<void>>
-
-type RequestContainer = RequestBase<void>
-
-type texto = (a: string) => void
+import {RequestHandler} from 'express'
+import {Response} from 'express-serve-static-core'
 
 export default abstract class BaseController {
-  protected readonly app
-
-  constructor() {
-    this.app = express()
-    this.app.get('/', (req, res, next) => {
-      console.log('oi')
-      res.send('oi')
-      next()
-    })
-  }
-
-  requestContainer: RequestContainer = async (req, res, next) => {
+  handler: RequestHandler = async (req, res, next) => {
     try {
-      this.requestHandler(req, res, next)
+      this.execute(req, res, next)
     } catch (e) {
-      this.error(e)
+      this.error(e, res)
     }
   }
 
-  abstract requestHandler: RequestHandler
+  abstract execute: RequestHandler
 
-  error(e: Error): void {
+  error(e: Error, res: Response): void {
     console.log({e})
+    res.status(400).send(e.message)
   }
 }

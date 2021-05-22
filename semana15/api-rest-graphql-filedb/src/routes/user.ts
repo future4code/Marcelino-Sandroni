@@ -1,12 +1,10 @@
-import express from 'express'
-import ListUsers from '../controllers/list-users'
+import {Router} from 'express'
 
-const userRoute = express.Router()
-
-const ListUsersController = new ListUsers()
+const userRoute = Router()
+// const ListUsersController = new ListUsers()
 
 // local/users
-userRoute.route('/').get(ListUsersController.handle).post(Controller.userCreate)
+// userRoute.route('/').get(ListUsersController.handle).post(Controller.userCreate)
 
 // local/users/id
 // userRoute

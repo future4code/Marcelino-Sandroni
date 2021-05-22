@@ -1,16 +1,15 @@
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
-// import userRoute from './routes/user'
+import {RequestHandler as ExpressRequestHandler} from 'express'
+import {indexRoute} from './routes'
+
+export type RequestHandler = ExpressRequestHandler
 
 const app = express()
-
 app.use(morgan('dev'))
 app.use(cors())
 app.use(express.json())
-// app.use('/user', userRoute)
-app.get('/', (req, res) => {
-  console.log('asdfsdf'.red)
-})
+app.use('/', indexRoute)
 
 export default app
