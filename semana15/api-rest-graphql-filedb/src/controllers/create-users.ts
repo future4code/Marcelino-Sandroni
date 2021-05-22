@@ -1,9 +1,18 @@
 import {Request, Response} from 'express'
+import Users from '../models/users'
+import BaseController from './BaseController'
 
-export default class UserController {
+export default class UserController extends BaseController {
   // CRUD?
   constructor() {
-    return this.userRead
+    super()
+    this.loadUsers(Users)
+  }
+  loadUsers() {
+    const Users
+  }
+  userList(req: Request, res: Response): void {
+    res.send('userList')
   }
   userCreate(req: Request, res: Response): void {
     res.send('userCreate')
@@ -20,5 +29,8 @@ export default class UserController {
 
   userSearch(req: Request, res: Response): void {
     res.send('userDelete')
+  }
+  userVerify(req: Request, res: Response): void {
+    console.log(req.query)
   }
 }
