@@ -1,5 +1,7 @@
+import path from 'path'
+
 const config = {
-  name: process.env.npm_package_name?.toUpperCase().replace(/-/g, ' '),
+  name: process.env.npm_package_name?.toUpperCase().replace(/-/g, ' ') || '',
   port: Number(process.env.PORT) || 3001,
   servers: [
     {protocol: 'HTTP', portChange: false},
@@ -10,8 +12,10 @@ const config = {
     playground: true
   },
   fileDB: {
-    path: process.cwd()
+    path: path.resolve(__dirname, 'database/userdb.json')
   }
 }
+
+Object.freeze(config)
 
 export default config

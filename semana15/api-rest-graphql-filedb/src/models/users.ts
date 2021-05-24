@@ -1,3 +1,6 @@
+import config from '../config'
+import fs from 'fs'
+
 export enum UserRole {
   Admin = 'ADMIN',
   Normal = 'NORMAL'
@@ -15,47 +18,53 @@ export enum DbStatus {
   connected
 }
 
-export interface UsersDatabase {
-  users: User[]
-  init: () => DbStatus
+export interface UsersModel {
+  init: () => Promise<DbStatus>
   getAll: () => User[]
   findById: (id: User['id']) => User | void
-  save: (user: User) => void
+  save: (user: User) => Promise<void | boolean>
 }
 
-export class UsersModel implements UsersDatabase {
-  users: User[]
+export class Users implements UsersModel {
+  protected users: User[]
 
-  constructor() {
+  constructor(user: User) {
     this.init()
   }
 
-  init(): DbStatus {
-    this.users = [
-      {
-        id: 1,
-        name: 'Marcelino',
-        type: UserRole.Admin,
-        age: 29
-      },
-      {
-        id: 2,
-        name: 'Alice',
-        type: UserRole.Normal,
-        age: 30
-      }
-    ]
+  get quantity(): number {
+    return this.users?.length
+  }
+
+  async init(): Promise<DbStatus> {
+    // this.users = []
+    const localUsers = await fs.promises.readFile(config.fileDB.path, 'utf8')
+    // console.log({localUsers})
+    this.users = JSON.parse(localUsers)
 
     if (!this.users) return DbStatus.disconnected
 
     return DbStatus.connected
   }
 
-  save(): void {
+  async save(newUser: User): Promise<void | boolean> {
+    console.log('saving...')
+    console.log({newUser})
     console.log(__dirname)
+    this.users.push(newUser)
+    const r = await fs.promises.writeFile(
+      config.fileDB.path,
+      JSON.stringify(this.users)
+    )
+
+    console.log(`response: `, r)
+    // if (r) throw new Error('error creating new user')
+    return r
   }
 
   getAll = (): User[] => this.users
+
+  findOne(props: Partial<User>)
 
   findById(id: User['id']): User | void {
     const user = this.users.find((user) => user.id === id)
