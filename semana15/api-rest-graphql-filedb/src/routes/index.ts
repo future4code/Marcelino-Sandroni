@@ -2,6 +2,6 @@ import {Router} from 'express'
 import {IndexController} from 'src/controllers'
 
 export const indexRoute = Router()
-const Index = new IndexController()
+const indexController = new IndexController()
 
-indexRoute.get('/', Index.handler)
+indexRoute.get('/', indexController.execute)
