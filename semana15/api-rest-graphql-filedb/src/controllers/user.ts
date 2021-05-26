@@ -54,11 +54,11 @@ export class UserController extends BaseController {
   search: RequestHandler = (req, res) =>
     this.execute(res, this.user.findOne, {args: req.query})
 
-  update: RequestHandler = (req: {body; params}, res) =>
+  update: RequestHandler = (req, res) =>
     this.execute(res, this.user.update, {
       args: {
-        id: params.id,
-        body
+        id: req.params.id,
+        req.body
       }
     })
 
