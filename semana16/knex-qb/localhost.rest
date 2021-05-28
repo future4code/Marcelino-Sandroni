@@ -1,0 +1,35 @@
+### home
+http://localhost:3000/
+
+### detail of the table actors
+http://localhost:3000/actors/detail
+
+### list all Actors
+http://localhost:3000/actors
+
+### create Actor
+POST http://localhost:3000/actors
+content-type: application/json
+
+{
+  "name": "Zeca Tatu",
+  "salary": 50,
+  "birthDate": "2000-12-31",
+  "gender": "male"
+}
+
+### get a user by id
+http://localhost:3000/actors/1180b1fb-db99-410e-9f41-38fd4a70d073
+### update a Actor by id
+PUT http://localhost:3000/actors/1180b1fb-db99-410e-9f41-38fd4a70d073
+Content-Type: application/json
+
+{
+  "name": "Marcelino",
+  "salary": 999,
+  "birthDate": "1991-11-28",
+  "gender": "male"
+}
+
+### delete a user by id
+DELETE http://localhost:3000/actors/ddf0b816-ad92-411c-9613-68f07f38fcce
