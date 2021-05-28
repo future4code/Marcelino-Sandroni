@@ -1,7 +1,8 @@
 import {BaseController} from './base'
 import {ActorsModel} from '../models/actors'
 import {v4 as uuidv4} from 'uuid'
-import {RequestHandler, Response} from 'express'
+import {Request, RequestHandler, Response, Router} from 'express'
+import 'reflect-metadata'
 
 type Props = {
   args?: Record<string, unknown> & any
@@ -14,6 +15,21 @@ type Handler = (
   props?: Props
 ) => Promise<void>
 
+const Get = (route: string) => (target: any, key: string) =>
+  Reflect.defineMetadata('route', ['get', route], target[key])
+
+const GetArrow = (route: string) => (target: any, key: string) => {
+  // console.log(Reflect.getOwnMetadataKeys(target[key]))
+  // Reflect.defineMetadata('route', route, target[key])
+  // Reflect.
+}
+
+type AnyClass = new (...args: any[]) => any
+
+const Control = (path: string) => (target: AnyClass) =>
+  Reflect.defineMetadata('path', path, target.prototype)
+
+@Control('/actors')
 export class ActorsController extends BaseController {
   model: ActorsModel
 
@@ -37,17 +53,22 @@ export class ActorsController extends BaseController {
     results: result
   })
 
-  // Arrow funfa de boas ja q o this eh onde ela foi declarada
-  getAll: RequestHandler = async (_, res) => {
-    console.log(this)
-    this.handler(res, 'findAll')
+  @Get('ma oee method')
+  async test(req: Request, res: Response): Promise<void> {
+    res.send('oi')
   }
 
-  // Normal function nao acha o this pois pega de onde executa
+  // @Get('/')
   // async getAll(_: Request, res: Response) {
   //   console.log(this)
   //   this.handler(res, 'findAll')
   // }
+
+  @GetArrow('/')
+  getAll: RequestHandler = async (_, res) => {
+    console.log(this)
+    this.handler(res, 'findAll')
+  }
 
   update: RequestHandler = async (req, res) => {
     const {id} = req.params

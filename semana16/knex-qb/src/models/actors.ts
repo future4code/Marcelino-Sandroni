@@ -23,9 +23,10 @@ export interface ActorsModel {
   delete: (id: Actor['id']) => Promise<number>
   update: (props: Record<string, unknown>) => Promise<number>
   detail: (props: unknown) => Promise<void>
+  errorDb: (e: Error) => void
 }
 
-export class Actors extends BaseModel {
+export class Actors extends BaseModel implements ActorsModel {
   actors!: () => Knex.QueryBuilder
   constructor() {
     super()
@@ -33,7 +34,11 @@ export class Actors extends BaseModel {
   }
 
   async init() {
-    this.actors = () => connection('actors')
+    try {
+      this.actors = () => connection('actors')
+    } catch (e) {
+      this.errorDb(e)
+    }
   }
 
   async findAll(props: unknown): Promise<Record<string, any>> {
@@ -63,5 +68,9 @@ export class Actors extends BaseModel {
   async detail(props: unknown) {
     const [r] = await connection.raw('describe actors')
     return r
+  }
+
+  errorDb(e: Error) {
+    console.log('fodeu', e)
   }
 }
