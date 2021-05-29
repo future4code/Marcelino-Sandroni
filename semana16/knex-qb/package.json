@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --clear --transpile-only --respawn ./src/index.ts"
+    "dev": "tsnd --clear --transpile-only --respawn ./src/index.ts",
+    "migration:db": "tsnd --clear ./src/database/creation.ts",
+    "build": "clear && tsc && node ./dist/src/index.js"
   },
   "dependencies": {
     "@types/cors": "^2.8.10",

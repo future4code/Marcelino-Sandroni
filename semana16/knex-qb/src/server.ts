@@ -1,23 +1,31 @@
 import express, {Express, Router} from 'express'
 import cors from 'cors'
-import {indexRoute, actorsRoute, moviesRoute, pingRouter} from './routes'
-import {ActorsController} from './controllers/actors'
-import {Actors} from './models/actors'
-import 'reflect-metadata'
-import {AddressInfo} from 'net'
-
-// export const app = express()
-
-// app.use(express.json())
-// app.use(cors())
-// app.use('/', indexRoute)
-// app.use('/actors', actorsRoute)
-// app.use('/movies', moviesRoute)
-// app.use('/ping', pingRouter)
+import {Model} from './models/base'
+import {Actors, Movies} from './models'
+import {Controller} from './controllers/base'
+import {
+  HomeController,
+  PingController,
+  ActorsController,
+  MoviesController
+} from './controllers'
 
 interface Server {
   app: Express
 }
+
+type Constructable<T> = new (...args: any[]) => T
+type OneOrTwoList<T, M> = ([T, M] | [T])[]
+
+type RouteMatch =
+  | 'all'
+  | 'get'
+  | 'post'
+  | 'put'
+  | 'delete'
+  | 'patch'
+  | 'options'
+  | 'head'
 
 export class SetupServer implements Server {
   app!: Express
@@ -27,7 +35,12 @@ export class SetupServer implements Server {
   async init(msg: string) {
     this.app = express()
     this.addMidleWares()
-    this.addControllers()
+    this.addController([
+      [HomeController],
+      [PingController],
+      [ActorsController, Actors],
+      [MoviesController, Movies]
+    ])
     this.listen(msg)
   }
 
@@ -42,26 +55,37 @@ export class SetupServer implements Server {
         console.log('Erro iniciando o server!'.red)
         return
       }
-
       console.log(`${msg}`.replace(/port/i, `PORT ${this.port}`).green)
     })
   }
 
-  addControllers() {
-    const actorsController = new ActorsController(Actors)
-    const path = Reflect.getMetadata('path', actorsController)
-    const [method, route] = Reflect.getOwnMetadata(
-      'route',
-      actorsController.getAll
-    )
-    console.log(path, method, route)
-
-    const actorsRoute = Router()
-    actorsRoute.get(route, actorsController.getAll)
-    this.app.use(path, actorsRoute)
+  addController(
+    controllerList: OneOrTwoList<
+      Constructable<Controller>,
+      Constructable<Model>
+    >
+  ) {
+    controllerList.forEach(([controller, model]) => {
+      const constructedController = model
+        ? new controller(model)
+        : new controller()
+      this.buildRoutes(constructedController)
+    })
   }
 
-  startControllers() {}
+  buildRoutes(controller: Controller) {
+    const router = Router()
+    const path = Reflect.getMetadata('path', controller)
+    const routes = Reflect.getMetadata('routes', controller)
+
+    routes.forEach(
+      ([method, route, key]: [RouteMatch, string, keyof Controller]) =>
+        router[method](route, controller[key] as any)
+    )
+
+    console.log(`Settings route: ${path}`.blue)
+    this.app.use(path, router)
+  }
 
   startDatabase() {}
 }

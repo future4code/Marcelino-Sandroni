@@ -4,8 +4,8 @@ import {RequestHandler} from 'express'
 import {Model} from '../models/base'
 import {Control, Route} from '../@types/decorators'
 
-@Control('/actors')
-export class ActorsController extends BaseController {
+@Control('/movies')
+export class MoviesController extends BaseController {
   constructor(model: new () => Model) {
     super(model)
   }
@@ -41,15 +41,15 @@ export class ActorsController extends BaseController {
 
   @Route('post')
   create: RequestHandler = async (req, res) => {
-    const {name, salary, birthDate: birth_date, gender} = req.body
+    const {
+      title,
+      sinopse,
+      releaseDate: release_date,
+      playingLimitDate: playing_limit_date
+    } = req.body
+
     const id = uuidv4()
-    const data = {
-      id,
-      name,
-      salary,
-      birth_date,
-      gender
-    }
+    const data = {id, title, sinopse, release_date, playing_limit_date}
 
     this.handler(res, 'save', {args: data, status: 201})
   }

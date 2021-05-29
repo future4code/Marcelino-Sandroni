@@ -1,4 +1,5 @@
+export * from './base'
 export * from './home'
+export * from './ping'
 export * from './actors'
 export * from './movies'
-export * from './ping'

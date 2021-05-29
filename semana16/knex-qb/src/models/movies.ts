@@ -6,7 +6,7 @@ enum Gender {
   Female = 'female'
 }
 
-export interface Actor {
+interface Actor {
   id: string
   name: string
   salary: number
@@ -14,8 +14,8 @@ export interface Actor {
   gender: Gender
 }
 
-export class Actors extends BaseModel {
-  constructor(table: string = 'actors') {
+export class Movies extends BaseModel {
+  constructor(table: string = 'movies') {
     super(table)
   }
 
@@ -36,13 +36,19 @@ export class Actors extends BaseModel {
   }
 
   async update(props: Record<string, unknown>): Promise<number> {
-    const {id, name, salary, birthDate: birth_date, gender} = props
-    const data = {name, salary, birth_date, gender}
+    const {
+      id,
+      title,
+      sinopse,
+      releaseDate: release_date,
+      playingLimitDate: playing_limit_date
+    } = props
+    const data = {title, sinopse, release_date, playing_limit_date}
     return this.db().update(data).where({id})
   }
 
   async detail(props: unknown) {
-    const [r] = await connection.raw('describe actors')
+    const [r] = await connection.raw('describe movies')
     return r
   }
 }
