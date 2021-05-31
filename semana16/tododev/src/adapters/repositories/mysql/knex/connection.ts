@@ -1,9 +1,9 @@
-import knex from 'knex'
 import {config} from 'dotenv'
+import {knex as Knex} from 'knex'
 
 config()
 
-export const connection = knex({
+export const knex = Knex({
   client: 'mysql',
   connection: {
     host: process.env.DB_HOST,

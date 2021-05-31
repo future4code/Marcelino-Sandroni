@@ -1,4 +1,4 @@
-import {Response} from 'express'
+import {IRoute, Response} from 'express'
 
 export type AnyClass = new (...args: any[]) => any
 
@@ -12,3 +12,12 @@ export type Props = {
   args?: Record<string, unknown> & any
   status?: number
 }
+
+export type APIMethods<T extends IRoute = IRoute> =
+  | 'get'
+  | 'post'
+  | 'put'
+  | 'delete'
+  | 'patch'
+
+export type MetaProps = [APIMethods, string, string]
