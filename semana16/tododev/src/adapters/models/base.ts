@@ -1,5 +1,5 @@
 import {Knex} from 'knex'
-import {connection} from '../adapters/repositories/mysql/sequelize/connection'
+import {knex} from '@/adapters/repositories/mysql/knex/connection'
 
 export interface Model {
   db: () => Knex.QueryBuilder
@@ -29,7 +29,7 @@ export abstract class BaseModel implements Model {
   async init(table: string) {
     try {
       console.log(`starting table ${table}`)
-      this.db = () => connection(table)
+      this.db = () => knex(table)
     } catch (e) {
       this.errorDb(e)
     }

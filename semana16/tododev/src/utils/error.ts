@@ -1,30 +1,21 @@
-export class MyError extends Error {
-  constructor(public code: number, message: string) {
-    super(message)
-  }
-  
-  static badRequest(message?: string) {
-    
-  }
+import {NextFunction, Request, Response} from 'express'
 
-  static async catch(error: any, req: any, res: any, next: any) {
-    console.log('my ErrorHandlerClass')
-    console.log('a', error)
-    console.log('b', req)
-    console.log('c', res)
-    console.log('d', next)
+export class ApiError {
+  constructor(public code: number, public message: string) {}
+
+  static badRequest(message?: string): ApiError {
+    return new ApiError(404, message || 'Not found')
   }
 }
 
-export const MyErrorHandler = async (
-  error: any,
-  req: any,
-  res: any,
-  next: any
-) => {
-  console.log('my error handler')
-  console.log('a', error)
-  console.log('b', req)
-  console.log('c', res)
-  console.log('d', next)
+export const errorHandler = (
+  error: Error | ApiError,
+  _: Request,
+  res: Response
+): void => {
+  if (error instanceof ApiError) {
+    res.status(error.code).send(error.message)
+  } else {
+    res.status(500).send('unknown error')
+  }
 }

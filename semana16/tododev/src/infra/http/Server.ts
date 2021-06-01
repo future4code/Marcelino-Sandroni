@@ -1,8 +1,8 @@
 import express, {Express, Router} from 'express'
-import {APIMethods} from 'src/@types/global'
-import {Controller} from '../../adapters/controllers/base'
+import {APIMethods, MetaProps} from '@/@types/global'
+import {Controller} from '@/adapters/controllers/base'
 import cors from 'cors'
-import {ErrorHandler, MyErrorHandler} from 'src/utils/errorHandler'
+import {errorHandler} from '@/utils/error'
 
 type ItemOrList<T> = T | T[]
 
@@ -14,7 +14,7 @@ interface Server {
   setupDatabase: () => void
 }
 
-export class SetupServer implements Server {
+export class ExpressServer implements Server {
   protected app: Express
   protected controllers: Controller[]
 
@@ -25,7 +25,7 @@ export class SetupServer implements Server {
 
   async init(message: string): Promise<void> {
     try {
-      this.setupMidlewares()
+      this.setupMiddlewares()
       this.setupController()
       this.setupDatabase()
       this.listen(message)
@@ -48,11 +48,11 @@ export class SetupServer implements Server {
     this.app.listen(this.port, () => console.log(message))
   }
 
-  setupMidlewares(): void {
+  setupMiddlewares(): void {
     this.app.use(express.json())
     this.app.use(cors())
-    this.app.use(MyErrorHandler)
     this.app.use(express.static('public/app/dist'))
+    this.app.use(errorHandler)
   }
 
   addControllers(controllers: ItemOrList<Controller>): Server {
@@ -69,12 +69,12 @@ export class SetupServer implements Server {
 
     const router = Router()
 
-    this.controllers.forEach(controller => {
+    this.controllers.forEach((controller: Controller) => {
       const path = '/api' + Reflect.getMetadata('path', controller)
       const routes = Reflect.getMetadata('routes', controller)
       console.log(path)
       console.log(routes)
-      routes.forEach(([method, route, operation]: APIMethods) =>
+      routes.forEach(([method, route, operation]: MetaProps) =>
         router[method](route, controller[operation])
       )
 
