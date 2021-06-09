@@ -1,5 +1,5 @@
 import {Response, RequestHandler} from 'express'
-import {Model} from '../../models/base'
+import {Model} from '../models/base'
 import {Handler} from '../../@types/global'
 
 export interface Controller {

@@ -1,5 +1,5 @@
 import express, {Express, Router} from 'express'
-import {APIMethods, MetaProps} from '@/@types/global'
+import {MetaProps} from '@/@types/global'
 import {Controller} from '@/adapters/controllers/base'
 import cors from 'cors'
 import {errorHandler} from '@/utils/error'
@@ -67,20 +67,21 @@ export class ExpressServer implements Server {
   setupController(): void {
     if (!this.controllers.length) throw new Error('No Controllers')
 
-    const router = Router()
-
     this.controllers.forEach((controller: Controller) => {
+      const router = Router()
       const path = '/api' + Reflect.getMetadata('path', controller)
-      const routes = Reflect.getMetadata('routes', controller)
-      console.log(path)
-      console.log(routes)
-      routes.forEach(([method, route, operation]: MetaProps) =>
+      const routes: MetaProps<Controller>[] = Reflect.getMetadata(
+        'routes',
+        controller
+      )
+      routes.forEach(([method, route, operation]) =>
         router[method](route, controller[operation])
       )
 
       this.app.use(path, router)
     })
   }
+
   setupDatabase(): void {
     console.log('implement')
   }

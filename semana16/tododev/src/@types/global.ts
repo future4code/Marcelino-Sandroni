@@ -20,4 +20,4 @@ export type APIMethods<T extends IRoute = IRoute> =
   | 'delete'
   | 'patch'
 
-export type MetaProps = [APIMethods, string, string]
+export type MetaProps<T> = [APIMethods, string, keyof T]

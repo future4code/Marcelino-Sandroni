@@ -1,1 +1,2 @@
-import './main/setupServer'
+import './infra/database/index'
+import './main/setup-server'
