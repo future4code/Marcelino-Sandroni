@@ -1,0 +1,8 @@
+const resolver = require('path').resolve
+
+module.exports = {
+  config: resolver('src', 'infra', 'database', 'config.ts'),
+  'models-path': resolver('src', 'infra', 'database', 'models'),
+  'migrations-path': resolver('src', 'infra', 'database', 'migrations'),
+  'seeders-path': resolver('src', 'infra', 'database', 'seeds')
+}
